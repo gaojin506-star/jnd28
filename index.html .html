@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>加拿大28数据助手</title>
+<style>
+:root{--bg:#07111d;--card:#0d1b2a;--line:#20354b;--gold:#f6c453;--text:#f5f7fa;--muted:#8fa3b8;--green:#55d68b;--red:#ff7272}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(#07111d,#0b1826);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+main{max-width:560px;margin:auto;padding:16px}
+.head{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}
+.head b{font-size:22px}
+.tag{font-size:12px;background:var(--gold);color:#111;padding:5px 9px;border-radius:20px;font-weight:800}
+.ad{display:block;background:linear-gradient(135deg,#6c2cff,#ff5d8f);padding:18px;border-radius:16px;text-align:center;font-weight:800;margin-bottom:12px;color:white;text-decoration:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.label{font-size:13px;color:var(--muted);margin-bottom:8px}
+#clock{font-size:40px;color:var(--gold);font-weight:900}
+.issue{font-weight:800;font-size:18px}
+.balls{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+.ball{width:43px;height:43px;background:#f4f6f8;color:#111;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:18px}
+.op{color:var(--muted);font-weight:900}
+.sum{color:var(--gold);font-size:22px;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{background:#102338;border:1px solid var(--line);border-radius:14px;text-align:center;padding:14px}
+.pick strong{display:block;color:var(--gold);font-size:23px;margin-top:5px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.num{background:#13283e;border:1px solid #29425c;border-radius:12px;text-align:center;padding:12px 2px;font-size:22px;font-weight:900}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.stat{background:#102338;border:1px solid var(--line);border-radius:12px;text-align:center;padding:11px 5px}
+.stat b{display:block;font-size:18px;color:var(--gold)}
+.stat small{color:var(--muted);font-size:11px}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:620px}
+th,td{text-align:center;padding:9px 5px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--muted)}
+.hit{color:var(--green);font-weight:900}
+.miss{color:var(--red);font-weight:900}
+.status{font-size:12px;color:var(--green)}
+.warn{font-size:12px;color:var(--muted);line-height:1.6;text-align:center}
+.btn{width:100%;padding:11px;border:0;border-radius:11px;background:var(--gold);font-weight:900;margin-top:10px}
+.pending{color:var(--gold);font-weight:800}
+</style>
+</head>
+<body>
+<main>
+<div class="head"><b>加拿大28数据助手</b><span class="tag">预测记录版</span></div>
+
+<a class="ad" id="topAd" href="#" onclick="return false">你的广告位｜后续可替换文字和链接</a>
+
+<section class="card">
+  <div class="label">实时状态 <span class="status" id="status">正在连接数据源…</span></div>
+  <div class="issue" id="nextIssue">下一期：--</div>
+  <div id="clock">--:--</div>
+</section>
+
+<section class="card">
+  <div class="label">最新开奖</div>
+  <div class="issue" id="lastIssue">第 -- 期</div>
+  <div class="balls">
+    <span class="ball" id="a">-</span><span class="op">+</span>
+    <span class="ball" id="b">-</span><span class="op">+</span>
+    <span class="ball" id="c">-</span><span class="op">=</span>
+    <span class="sum" id="sum">--</span>
+  </div>
+</section>
+
+<section class="card">
+  <div class="label">本期预测</div>
+  <div class="grid">
+    <div class="pick">双组合推荐<strong id="sz">-- / --</strong></div>
+    <div class="pick">杀组<strong id="kill">--</strong></div>
+  </div>
+
+  <div class="label" style="margin-top:16px">4码推荐（和值）</div>
+  <div class="nums" id="nums">
+    <div class="num">--</div><div class="num">--</div><div class="num">--</div><div class="num">--</div>
+  </div>
+
+  <button class="btn" onclick="loadAll()">立即刷新</button>
+</section>
+
+<section class="card">
+  <div class="label">算法B参考｜近30期加权趋势</div>
+  <div class="grid">
+    <div class="pick">双组合参考<strong id="algoBCombo">-- / --</strong></div>
+    <div class="pick">趋势强度<strong id="algoBStrength">--</strong></div>
+  </div>
+  <div class="label" style="margin-top:16px">算法B 4码参考</div>
+  <div class="nums" id="algoBNums">
+    <div class="num">--</div><div class="num">--</div><div class="num">--</div><div class="num">--</div>
+  </div>
+  <div class="warn" style="margin-top:10px">
+    算法B根据最近30期数据进行近期权重、组合频率与和值遗漏综合评分，仅作为第二参考。
+  </div>
+</section>
+
+<section class="card">
+  <div class="label">近10期预测统计</div>
+  <div class="stats">
+    <div class="stat"><b id="comboRate">--</b><small>双组合命中</small></div>
+    <div class="stat"><b id="numRate">--</b><small>4码命中</small></div>
+    <div class="stat"><b id="killRate">--</b><small>杀组成功</small></div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="label">近期预测记录</div>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>期号</th>
+          <th>双组合预测</th>
+          <th>4码预测</th>
+          <th>杀组</th>
+          <th>实际结果</th>
+          <th>双组</th>
+          <th>4码</th>
+          <th>杀组结果</th>
+        </tr>
+      </thead>
+      <tbody id="records">
+        <tr><td colspan="8" class="pending">等待产生预测记录…</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="warn">
+  预测记录会在生成时保存，开奖后自动核对双组合、4码和杀组结果，不手工修改中错。<br>
+  杀组“成功”表示实际开奖没有落在被杀组合；第三方接口异常时可能暂时无法更新。主预测、算法B与杀组均仅供数据观察，不保证命中。
+</div>
+</main>
+
+<script>
+const BASE='https://pc28.help';
+const STORE='jnd28_prediction_records_v3';
+const PENDING='jnd28_pending_prediction_v3';
+
+let remain=0;
+let loading=false;
+const $=id=>document.getElementById(id);
+
+function parseClock(s){
+  if(!s)return 0;
+  let p=String(s).split(':').map(Number);
+  return p.length===3 ? p[0]*3600+p[1]*60+p[2] : p[0]*60+p[1];
+}
+function fmt(s){
+  s=Math.max(0,Number(s)||0);
+  return String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
+}
+function abc(nbrs){
+  const x=String(nbrs||'').split(',').map(Number);
+  if(x.length<20)return null;
+  const one=[1,4,7,10,13,16].reduce((s,i)=>s+(x[i]||0),0)%10;
+  const two=[2,5,8,11,14,17].reduce((s,i)=>s+(x[i]||0),0)%10;
+  const three=[3,6,9,12,15,18].reduce((s,i)=>s+(x[i]||0),0)%10;
+  return [one,two,three];
+}
+async function j(path){
+  const r=await fetch(BASE+path,{cache:'no-store'});
+  if(!r.ok)throw Error('HTTP '+r.status);
+  return r.json();
+}
+function fourNums(history){
+  let count=Array(28).fill(0), lastSeen=Array(28).fill(999);
+  history.forEach((r,i)=>{
+    const n=Number(r.number);
+    if(n>=0&&n<=27){
+      count[n]++;
+      if(lastSeen[n]===999) lastSeen[n]=i;
+    }
+  });
+  return [...Array(28).keys()]
+    .sort((x,y)=>(count[x]-count[y])||(lastSeen[y]-lastSeen[x]))
+    .slice(0,4).sort((a,b)=>a-b);
+}
+
+function algorithmB(history){
+  const combos=['大单','大双','小单','小双'];
+  const comboScore=Object.fromEntries(combos.map(c=>[c,0]));
+  const sumScore=Array(28).fill(0);
+  const lastSeen=Array(28).fill(999);
+
+  const rows=(history||[]).slice(0,30);
+
+  rows.forEach((r,i)=>{
+    const sum=Number(r.number);
+    if(!Number.isFinite(sum) || sum<0 || sum>27) return;
+
+    // 越新的期数权重越高，约从 1.00 递减到 0.35。
+    const recency=Math.max(0.35,1-i*0.022);
+    const combo=r.combination || classify(sum);
+    if(comboScore[combo]!==undefined) comboScore[combo]+=recency;
+
+    // 和值趋势：近期出现次数 + 当前遗漏。
+    sumScore[sum]+=recency*1.25;
+    if(lastSeen[sum]===999) lastSeen[sum]=i;
+  });
+
+  // 双组合：取近期加权得分最高的两个组合。
+  const comboRank=combos
+    .map(c=>({c,score:comboScore[c]}))
+    .sort((a,b)=>b.score-a.score);
+  const chosenCombos=comboRank.slice(0,2).map(x=>x.c);
+
+  // 4码：兼顾近期活跃与遗漏，避免完全等同于主算法。
+  const numberRank=[...Array(28).keys()].map(n=>{
+    const omission = lastSeen[n]===999 ? 30 : lastSeen[n];
+    const omissionBonus = Math.min(12, omission) * 0.08;
+    return {n, score:sumScore[n] + omissionBonus};
+  }).sort((a,b)=>b.score-a.score || a.n-b.n);
+
+  const nums=numberRank.slice(0,4).map(x=>x.n).sort((a,b)=>a-b);
+
+  const total=comboRank.reduce((s,x)=>s+x.score,0);
+  const top2=comboRank.slice(0,2).reduce((s,x)=>s+x.score,0);
+  const strength=total>0 ? Math.round(top2/total*100) : 0;
+
+  return {combos:chosenCombos, nums, strength};
+}
+
+function renderAlgorithmB(history){
+  const r=algorithmB(history||[]);
+  $('algoBCombo').textContent=r.combos.join(' / ') || '--';
+  $('algoBStrength').textContent=r.strength ? r.strength+'%' : '--';
+  $('algoBNums').innerHTML=r.nums.map(n=>'<div class="num">'+String(n).padStart(2,'0')+'</div>').join('');
+}
+
+function getRecords(){
+  try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){return []}
+}
+function saveRecords(rows){
+  localStorage.setItem(STORE,JSON.stringify(rows.slice(0,100)));
+}
+function getPending(){
+  try{return JSON.parse(localStorage.getItem(PENDING)||'null')}catch(e){return null}
+}
+function savePending(p){
+  localStorage.setItem(PENDING,JSON.stringify(p));
+}
+function clearPending(){
+  localStorage.removeItem(PENDING);
+}
+function classify(sum){
+  const size=sum<=13?'小':'大';
+  const parity=sum%2===0?'双':'单';
+  return size+parity;
+}
+function normalizeComboText(v){
+  if(!v)return [];
+  const s=String(v).replace(/\s+/g,'');
+  const all=['大单','大双','小单','小双'];
+  return all.filter(x=>s.includes(x));
+}
+function uniqueCombos(a,b){
+  const arr=[...normalizeComboText(a),...normalizeComboText(b)];
+  return [...new Set(arr)].slice(0,2);
+}
+function buildComboPair(primary, killGroup, history){
+  const all=['大单','大双','小单','小双'];
+  const first=normalizeComboText(primary)[0] || all[0];
+
+  // 第二组合采用透明的近期频率算法：优先选近期出现较少、且不与主组合重复的组合。
+  const counts=Object.fromEntries(all.map(x=>[x,0]));
+  (history||[]).forEach(r=>{
+    const c=r.combination || r.actualCombo;
+    if(counts[c]!==undefined) counts[c]++;
+  });
+
+  let candidates=all.filter(x=>x!==first);
+  // 优先避开当前杀组，避免页面逻辑互相冲突；若无候选则恢复全部。
+  if(killGroup) {
+    const filtered=candidates.filter(x=>x!==killGroup);
+    if(filtered.length) candidates=filtered;
+  }
+  candidates.sort((a,b)=>counts[a]-counts[b]);
+  return [first,candidates[0] || all.find(x=>x!==first)];
+}
+function settleIfNeeded(latestIssue, actualSum){
+  const p=getPending();
+  if(!p)return;
+
+  const latestNum=Number(latestIssue), predNum=Number(p.issue);
+  if(!Number.isFinite(latestNum)||!Number.isFinite(predNum))return;
+
+  if(latestNum < predNum)return;
+
+  if(latestNum === predNum){
+    const actualCombo=classify(actualSum);
+    const comboHit=(p.combos||[]).includes(actualCombo);
+    const numHit=(p.nums||[]).includes(Number(actualSum));
+    const killSuccess=p.kill ? actualCombo!==p.kill : null;
+
+    const rows=getRecords();
+    if(!rows.some(r=>String(r.issue)===String(p.issue))){
+      rows.unshift({
+        issue:String(p.issue),
+        combos:p.combos||[],
+        nums:p.nums||[],
+        actualSum:Number(actualSum),
+        actualCombo,
+        comboHit,
+        numHit,
+        kill:p.kill || null,
+        killSuccess,
+        settled:true,
+        ts:Date.now()
+      });
+      saveRecords(rows);
+    }
+    clearPending();
+  } else if(latestNum > predNum){
+    // 若页面长时间没打开错过了对应开奖，不伪造核对结果，记为未核对。
+    const rows=getRecords();
+    if(!rows.some(r=>String(r.issue)===String(p.issue))){
+      rows.unshift({
+        issue:String(p.issue),
+        combos:p.combos||[],
+        nums:p.nums||[],
+        actualSum:null,
+        actualCombo:'未核对',
+        comboHit:null,
+        numHit:null,
+        kill:p.kill || null,
+        killSuccess:null,
+        settled:false,
+        ts:Date.now()
+      });
+      saveRecords(rows);
+    }
+    clearPending();
+  }
+}
+function createPending(nextIssue, combos, nums, kill){
+  const old=getPending();
+  if(old && String(old.issue)===String(nextIssue))return;
+  savePending({
+    issue:String(nextIssue),
+    combos:[...(combos||[])],
+    nums:[...(nums||[])],
+    kill:kill || null,
+    createdAt:Date.now()
+  });
+}
+function renderRecords(){
+  const rows=getRecords().slice(0,10);
+  const pending=getPending();
+  let html='';
+
+  if(pending){
+    html += `<tr>
+      <td>${pending.issue}</td>
+      <td>${(pending.combos||[]).join(' / ')||'--'}</td>
+      <td>${(pending.nums||[]).map(n=>String(n).padStart(2,'0')).join(' ')||'--'}</td>
+      <td>${pending.kill||'--'}</td>
+      <td class="pending">待开奖</td>
+      <td class="pending">待核对</td>
+      <td class="pending">待核对</td>
+      <td class="pending">待核对</td>
+    </tr>`;
+  }
+
+  html += rows.map(r=>{
+    const actual=r.actualSum===null?'未核对':`${r.actualCombo} / ${r.actualSum}`;
+    const c=r.comboHit===null?'--':(r.comboHit?'中':'错');
+    const n=r.numHit===null?'--':(r.numHit?'中':'错');
+    return `<tr>
+      <td>${r.issue}</td>
+      <td>${(r.combos||[]).join(' / ')||'--'}</td>
+      <td>${(r.nums||[]).map(x=>String(x).padStart(2,'0')).join(' ')||'--'}</td>
+      <td>${r.kill||'--'}</td>
+      <td>${actual}</td>
+      <td class="${r.comboHit===null?'':(r.comboHit?'hit':'miss')}">${c}</td>
+      <td class="${r.numHit===null?'':(r.numHit?'hit':'miss')}">${n}</td>
+      <td class="${r.killSuccess===null?'':(r.killSuccess?'hit':'miss')}">${r.killSuccess===null?'--':(r.killSuccess?'成功':'失败')}</td>
+    </tr>`;
+  }).join('');
+
+  $('records').innerHTML=html || `<tr><td colspan="8" class="pending">等待产生预测记录…</td></tr>`;
+
+  const settled=rows.filter(r=>r.comboHit!==null);
+  const comboHits=settled.filter(r=>r.comboHit).length;
+  const numHits=settled.filter(r=>r.numHit).length;
+  const killSettled=rows.filter(r=>r.killSuccess!==null);
+  const killWins=killSettled.filter(r=>r.killSuccess).length;
+  $('comboRate').textContent=settled.length?`${comboHits}/${settled.length}`:'--';
+  $('numRate').textContent=settled.length?`${numHits}/${settled.length}`:'--';
+  $('killRate').textContent=killSettled.length?`${killWins}/${killSettled.length}`:'--';
+}
+
+async function loadAll(){
+  if(loading)return;
+  loading=true;
+  try{
+    $('status').textContent='连接中…';
+    const [keno,kj,sz,sha]=await Promise.all([
+      j('/api/keno.json?nbr=10'),
+      j('/api/kj.json?nbr=30'),
+      j('/api/sz.json?nbr=1'),
+      j('/api/sha.json?nbr=1')
+    ]);
+
+    if(keno.message!=='success'||kj.message!=='success')throw Error('bad response');
+
+    remain=parseClock(keno.countdown||kj.countdown);
+
+    const latest=keno.data&&keno.data[0];
+    if(!latest)throw Error('no latest draw');
+
+    const arr=abc(latest.nbrs);
+    let actualSum=null;
+    if(arr){
+      $('a').textContent=arr[0];
+      $('b').textContent=arr[1];
+      $('c').textContent=arr[2];
+      actualSum=arr.reduce((x,y)=>x+y,0);
+      $('sum').textContent=actualSum;
+    }else{
+      const kjLatest=(kj.data||[])[0];
+      actualSum=kjLatest?Number(kjLatest.number):null;
+    }
+
+    $('lastIssue').textContent='第 '+latest.nbr+' 期';
+    const nextIssue=String(Number(latest.nbr)+1);
+    $('nextIssue').textContent='下一期：'+nextIssue;
+
+    if(actualSum!==null && Number.isFinite(Number(actualSum))){
+      settleIfNeeded(String(latest.nbr),Number(actualSum));
+    }
+
+    const sp=sz.data&&sz.data[0]?sz.data[0].predict:'--';
+    const kill=sha.data&&sha.data[0]?sha.data[0].predict:'--';
+    const killGroup=normalizeComboText(kill)[0] || null;
+    const combos=buildComboPair(sp,killGroup,kj.data||[]);
+    $('sz').textContent=combos.join(' / ');
+    $('kill').textContent=killGroup||'--';
+
+    const ns=fourNums(kj.data||[]);
+    $('nums').innerHTML=ns.map(n=>'<div class="num">'+String(n).padStart(2,'0')+'</div>').join('');
+
+    // 独立算法B，不覆盖主接口预测。
+    renderAlgorithmB(kj.data||[]);
+
+    createPending(nextIssue,combos,ns,killGroup);
+    renderRecords();
+    $('status').textContent='实时数据已连接';
+  }catch(e){
+    console.warn(e);
+    $('status').textContent='连接失败｜稍后重试';
+    renderRecords();
+  }finally{
+    loading=false;
+  }
+}
+
+setInterval(()=>{
+  if(remain>0)remain--;
+  $('clock').textContent=fmt(remain);
+  if(remain===0)loadAll();
+},1000);
+
+setInterval(loadAll,15000);
+renderRecords();
+loadAll();
+</script>
+</body>
+</html>
