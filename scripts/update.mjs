@@ -21,7 +21,7 @@ function saveState(state) {
 async function getJson(path) {
   const res = await fetch(BASE + path, {
     headers: {
-      "user-agent": "jnd28-background-updater/1.0"
+      "user-agent": "Mozilla/5.0 jnd28-background-updater"
     }
   });
 
@@ -42,47 +42,165 @@ function normalizeCombo(value) {
   return combosAll.find(x => str.includes(x)) || null;
 }
 
-function getRows(kj) {
-  return (kj.data || [])
-    .map((r, i) => ({
-      issue: String(r.nbr || ""),
-      sum: Number(r.number),
-      combo: r.combination || classify(Number(r.number)),
-      idx: i
-    }))
-    .filter(r => Number.isFinite(r.sum) && r.issue);
+/* Keno 20号码 → PC28 和值 */
+function calcFromKeno(nbrs) {
+  const nums = String(nbrs || "")
+    .split(",")
+    .map(Number);
+
+  if (nums.length < 20) return null;
+
+  const a =
+    [1, 4, 7, 10, 13, 16]
+      .reduce((s, i) => s + nums[i], 0) % 10;
+
+  const b =
+    [2, 5, 8, 11, 14, 17]
+      .reduce((s, i) => s + nums[i], 0) % 10;
+
+  const c =
+    [3, 6, 9, 12, 15, 18]
+      .reduce((s, i) => s + nums[i], 0) % 10;
+
+  return {
+    a,
+    b,
+    c,
+    sum: a + b + c
+  };
 }
 
-/* 算法一：接口预测 + 历史校正 */
-function algo1(kj, sz, sha) {
-  const rows = getRows(kj).slice(0, 100);
+/* 优先使用 /api/kj，失败或为空时用 /api/keno */
+async function loadDrawRows() {
+  try {
+    const kj = await getJson("/api/kj.json?nbr=100");
+
+    if (
+      Array.isArray(kj.data) &&
+      kj.data.length > 0
+    ) {
+      return {
+        source: "kj",
+        raw: kj,
+        rows: kj.data.map((r, i) => ({
+          issue: String(r.nbr || ""),
+          sum: Number(r.number),
+          combo:
+            r.combination ||
+            classify(Number(r.number)),
+          idx: i
+        }))
+        .filter(r =>
+          r.issue &&
+          Number.isFinite(r.sum)
+        )
+      };
+    }
+  } catch (e) {
+    console.log(
+      "KJ接口不可用，切换Keno：",
+      e.message
+    );
+  }
+
+  const keno =
+    await getJson(
+      "/api/keno.json?nbr=100"
+    );
+
+  if (
+    !Array.isArray(keno.data) ||
+    !keno.data.length
+  ) {
+    throw new Error(
+      "KJ与Keno接口都没有数据"
+    );
+  }
+
+  const rows = [];
+
+  for (
+    const [i, r]
+    of keno.data.entries()
+  ) {
+    const pc = calcFromKeno(r.nbrs);
+
+    if (!pc) continue;
+
+    rows.push({
+      issue: String(r.nbr || ""),
+      sum: pc.sum,
+      combo: classify(pc.sum),
+      a: pc.a,
+      b: pc.b,
+      c: pc.c,
+      idx: i
+    });
+  }
+
+  if (!rows.length) {
+    throw new Error(
+      "Keno数据无法计算PC28"
+    );
+  }
+
+  return {
+    source: "keno",
+    raw: keno,
+    rows
+  };
+}
+
+/* 算法一 */
+function algo1(
+  rows,
+  sz,
+  sha
+) {
+  rows = rows.slice(0, 100);
 
   const primary =
-    normalizeCombo(sz?.data?.[0]?.predict) ||
+    normalizeCombo(
+      sz?.data?.[0]?.predict
+    ) ||
     rows[0]?.combo ||
     "大单";
 
   const kill =
-    normalizeCombo(sha?.data?.[0]?.predict) || null;
+    normalizeCombo(
+      sha?.data?.[0]?.predict
+    ) || null;
 
   const counts =
-    Object.fromEntries(combosAll.map(c => [c, 0]));
+    Object.fromEntries(
+      combosAll.map(c => [c, 0])
+    );
 
-  rows.forEach(r => counts[r.combo]++);
+  rows.forEach(r =>
+    counts[r.combo]++
+  );
 
   let candidates =
-    combosAll.filter(c => c !== primary && c !== kill);
+    combosAll.filter(
+      c =>
+        c !== primary &&
+        c !== kill
+    );
 
   if (!candidates.length) {
     candidates =
-      combosAll.filter(c => c !== primary);
+      combosAll.filter(
+        c => c !== primary
+      );
   }
 
   candidates.sort(
-    (a, b) => counts[b] - counts[a]
+    (a, b) =>
+      counts[b] - counts[a]
   );
 
-  const second = candidates[0];
+  const second =
+    candidates[0];
 
   let confidence = 52;
 
@@ -94,45 +212,65 @@ function algo1(kj, sz, sha) {
     confidence += 10;
   }
 
-  const topFreq = Math.max(
-    counts[primary] || 0,
-    counts[second] || 0
-  );
+  const topFreq =
+    Math.max(
+      counts[primary] || 0,
+      counts[second] || 0
+    );
 
-  confidence += Math.min(
-    18,
-    Math.round(
-      topFreq /
-      Math.max(1, rows.length) *
-      40
-    )
-  );
+  confidence +=
+    Math.min(
+      18,
+      Math.round(
+        topFreq /
+        Math.max(1, rows.length) *
+        40
+      )
+    );
 
   return {
-    combos: [primary, second],
+    combos: [
+      primary,
+      second
+    ],
+
     kill:
       kill ||
       combosAll.find(
-        c => ![primary, second].includes(c)
+        c =>
+          ![
+            primary,
+            second
+          ].includes(c)
       ),
-    confidence: Math.min(85, confidence)
+
+    confidence:
+      Math.min(
+        85,
+        confidence
+      )
   };
 }
 
-/* 算法二：近期结构 + 转移关系 */
-function algo2(kj) {
-  const rows = getRows(kj).slice(0, 36);
+/* 算法二：近期趋势+转移 */
+function algo2(rows) {
+  rows = rows.slice(0, 36);
 
   const score =
     Object.fromEntries(
-      combosAll.map(c => [c, 0])
+      combosAll.map(
+        c => [c, 0]
+      )
     );
 
   const transitions = {};
 
   rows.forEach((r, i) => {
     const weight =
-      Math.max(0.25, 1 - i * 0.024);
+      Math.max(
+        0.25,
+        1 - i * 0.024
+      );
 
     score[r.combo] += weight;
 
@@ -140,23 +278,24 @@ function algo2(kj) {
       const previous =
         rows[i + 1].combo;
 
-      const current =
-        r.combo;
-
       transitions[previous] ||=
         Object.fromEntries(
-          combosAll.map(c => [c, 0])
+          combosAll.map(
+            c => [c, 0]
+          )
         );
 
-      transitions[previous][current] +=
-        weight;
+      transitions[previous][r.combo]
+        += weight;
     }
   });
 
-  const latest = rows[0]?.combo;
+  const latest =
+    rows[0]?.combo;
 
   const trans =
-    latest && transitions[latest]
+    latest &&
+    transitions[latest]
       ? transitions[latest]
       : {};
 
@@ -166,13 +305,17 @@ function algo2(kj) {
         c,
         s:
           score[c] +
-          (trans[c] || 0) * 1.35
+          (trans[c] || 0) *
+          1.35
       }))
-      .sort((a, b) => b.s - a.s);
+      .sort(
+        (a, b) =>
+          b.s - a.s
+      );
 
   const total =
     rank.reduce(
-      (sum, x) => sum + x.s,
+      (s, x) => s + x.s,
       0
     ) || 1;
 
@@ -183,7 +326,9 @@ function algo2(kj) {
     ],
 
     kill:
-      rank[rank.length - 1].c,
+      rank[
+        rank.length - 1
+      ].c,
 
     confidence:
       Math.min(
@@ -200,33 +345,37 @@ function algo2(kj) {
   };
 }
 
-/* 算法三：20 / 50 / 100期综合 */
-function algo3(kj) {
-  const rows =
-    getRows(kj).slice(0, 100);
+/* 算法三：20/50/100综合 */
+function algo3(rows) {
+  rows = rows.slice(0, 100);
 
   const windows =
     [20, 50, 100];
 
   const blended =
     Object.fromEntries(
-      combosAll.map(c => [c, 0])
+      combosAll.map(
+        c => [c, 0]
+      )
     );
 
   for (
-    const [wi, windowSize]
+    const [wi, size]
     of windows.entries()
   ) {
     const part =
-      rows.slice(0, windowSize);
+      rows.slice(0, size);
 
     const counts =
       Object.fromEntries(
-        combosAll.map(c => [c, 0])
+        combosAll.map(
+          c => [c, 0]
+        )
       );
 
     part.forEach(
-      r => counts[r.combo]++
+      r =>
+        counts[r.combo]++
     );
 
     const weight =
@@ -235,22 +384,27 @@ function algo3(kj) {
     combosAll.forEach(c => {
       blended[c] +=
         counts[c] /
-        Math.max(1, part.length) *
+        Math.max(
+          1,
+          part.length
+        ) *
         weight;
     });
   }
 
   const recent =
-    rows.slice(0, 5)
-        .map(r => r.combo);
+    rows
+      .slice(0, 5)
+      .map(r => r.combo);
 
   combosAll.forEach(c => {
-    const recentCount =
-      recent.filter(x => x === c)
-            .length;
+    const count =
+      recent.filter(
+        x => x === c
+      ).length;
 
     blended[c] -=
-      recentCount * 0.008;
+      count * 0.008;
   });
 
   const rank =
@@ -259,11 +413,14 @@ function algo3(kj) {
         c,
         s: blended[c]
       }))
-      .sort((a, b) => b.s - a.s);
+      .sort(
+        (a, b) =>
+          b.s - a.s
+      );
 
   const total =
     rank.reduce(
-      (sum, x) => sum + x.s,
+      (s, x) => s + x.s,
       0
     ) || 1;
 
@@ -274,7 +431,9 @@ function algo3(kj) {
     ],
 
     kill:
-      rank[rank.length - 1].c,
+      rank[
+        rank.length - 1
+      ].c,
 
     confidence:
       Math.min(
@@ -291,7 +450,6 @@ function algo3(kj) {
   };
 }
 
-/* 核对预测 */
 function settleRecord(
   algoState,
   actual
@@ -301,7 +459,8 @@ function settleRecord(
 
   if (
     !current ||
-    current.issue !== actual.issue
+    current.issue !==
+      actual.issue
   ) {
     return;
   }
@@ -313,35 +472,55 @@ function settleRecord(
 
   const killSuccess =
     current.kill
-      ? actual.combo !== current.kill
+      ? actual.combo !==
+        current.kill
       : null;
 
   algoState.records.unshift({
-    issue: actual.issue,
-    combos: current.combos,
-    kill: current.kill,
-    confidence: current.confidence,
-    actualCombo: actual.combo,
-    actualSum: actual.sum,
+    issue:
+      actual.issue,
+
+    combos:
+      current.combos,
+
+    kill:
+      current.kill,
+
+    confidence:
+      current.confidence,
+
+    actualCombo:
+      actual.combo,
+
+    actualSum:
+      actual.sum,
+
     comboHit,
     killSuccess,
+
     settledAt:
-      new Date().toISOString()
+      new Date()
+        .toISOString()
   });
 
   algoState.records =
-    algoState.records.slice(0, 100);
+    algoState.records
+      .slice(0, 100);
 
   algoState.current = null;
 }
 
-/* 虚拟积分结算 */
-function settleSim(sim, actual) {
-  const pending = sim.pending;
+function settleSim(
+  sim,
+  actual
+) {
+  const pending =
+    sim.pending;
 
   if (
     !pending ||
-    pending.issue !== actual.issue
+    pending.issue !==
+      actual.issue
   ) {
     return;
   }
@@ -352,8 +531,11 @@ function settleSim(sim, actual) {
     );
 
   if (hit) {
-    sim.points += sim.stake;
-    sim.net += sim.stake;
+    sim.points +=
+      sim.stake;
+
+    sim.net +=
+      sim.stake;
 
     sim.step = 1;
     sim.stake = SIM_BASE;
@@ -370,47 +552,74 @@ function settleSim(sim, actual) {
 
   sim.pending = null;
 
-  if (sim.points >= SIM_TARGET) {
+  if (
+    sim.points >=
+    SIM_TARGET
+  ) {
     sim.success++;
 
     sim.history.unshift({
-      round: sim.round,
-      result: "成功",
-      endPoints: sim.points,
+      round:
+        sim.round,
+
+      result:
+        "成功",
+
+      endPoints:
+        sim.points,
+
       endedAt:
-        new Date().toISOString()
+        new Date()
+          .toISOString()
     });
 
     sim.round++;
-    sim.points = SIM_START;
+    sim.points =
+      SIM_START;
+
     sim.step = 1;
-    sim.stake = SIM_BASE;
+    sim.stake =
+      SIM_BASE;
+
   } else if (
     sim.points <= 0 ||
-    sim.points < sim.stake * 2
+    sim.points <
+      sim.stake * 2
   ) {
     sim.fail++;
 
     sim.history.unshift({
-      round: sim.round,
-      result: "失败",
+      round:
+        sim.round,
+
+      result:
+        "失败",
+
       endPoints:
-        Math.max(0, sim.points),
+        Math.max(
+          0,
+          sim.points
+        ),
+
       endedAt:
-        new Date().toISOString()
+        new Date()
+          .toISOString()
     });
 
     sim.round++;
-    sim.points = SIM_START;
+    sim.points =
+      SIM_START;
+
     sim.step = 1;
-    sim.stake = SIM_BASE;
+    sim.stake =
+      SIM_BASE;
   }
 
   sim.history =
-    sim.history.slice(0, 100);
+    sim.history
+      .slice(0, 100);
 }
 
-/* 创建下一期预测 */
 function ensurePrediction(
   algoState,
   sim,
@@ -419,67 +628,79 @@ function ensurePrediction(
 ) {
   if (
     !algoState.current ||
-    algoState.current.issue !== issue
+    algoState.current.issue
+      !== issue
   ) {
     algoState.current = {
       issue,
       ...prediction,
       createdAt:
-        new Date().toISOString()
+        new Date()
+          .toISOString()
     };
   }
 
   if (
     !sim.pending &&
-    prediction.confidence >= MIN_CONF
+    prediction.confidence
+      >= MIN_CONF
   ) {
     sim.pending = {
       issue,
+
       combos: [
         ...prediction.combos
       ],
+
       confidence:
         prediction.confidence,
+
       createdAt:
-        new Date().toISOString()
+        new Date()
+          .toISOString()
     };
   }
 }
 
-/* 主更新 */
 async function tick() {
-  const state = loadState();
+  const state =
+    loadState();
 
-  const [kj, sz, sha] =
-    await Promise.all([
-      getJson("/api/kj.json?nbr=100"),
-      getJson("/api/sz.json?nbr=1"),
-      getJson("/api/sha.json?nbr=1")
-    ]);
+  const drawData =
+    await loadDrawRows();
 
-  const rows = getRows(kj);
+  const rows =
+    drawData.rows;
 
-  if (!rows.length) {
-    throw new Error(
-      "开奖接口没有数据"
-    );
-  }
+  const latest =
+    rows[0];
 
-  const latest = rows[0];
+  console.log(
+    "开奖数据源:",
+    drawData.source
+  );
 
   state.latestDraw = {
-    issue: latest.issue,
-    sum: latest.sum,
-    combo: latest.combo
+    issue:
+      latest.issue,
+
+    sum:
+      latest.sum,
+
+    combo:
+      latest.combo
   };
 
   state.nextIssue =
     String(
-      Number(latest.issue) + 1
+      Number(
+        latest.issue
+      ) + 1
     );
 
   for (
-    const id of ["a1", "a2", "a3"]
+    const id of
+    ["a1", "a2", "a3"]
   ) {
     settleRecord(
       state.algorithms[id],
@@ -492,14 +713,35 @@ async function tick() {
     );
   }
 
+  let sz = {};
+  let sha = {};
+
+  try {
+    sz =
+      await getJson(
+        "/api/sz.json?nbr=1"
+      );
+  } catch {}
+
+  try {
+    sha =
+      await getJson(
+        "/api/sha.json?nbr=1"
+      );
+  } catch {}
+
   const p1 =
-    algo1(kj, sz, sha);
+    algo1(
+      rows,
+      sz,
+      sha
+    );
 
   const p2 =
-    algo2(kj);
+    algo2(rows);
 
   const p3 =
-    algo3(kj);
+    algo3(rows);
 
   ensurePrediction(
     state.algorithms.a1,
@@ -525,29 +767,37 @@ async function tick() {
   saveState(state);
 
   console.log(
-    `updated ${state.latestDraw.issue} -> ${state.nextIssue}`
+    `updated ${latest.issue} -> ${state.nextIssue}`
   );
 }
 
 const loops =
   Number(
-    process.env.POLL_LOOPS || 1
+    process.env
+      .POLL_LOOPS || 1
   );
 
 const sleepMs =
   Number(
-    process.env.POLL_INTERVAL_MS || 0
+    process.env
+      .POLL_INTERVAL_MS || 0
   );
 
-for (let i = 0; i < loops; i++) {
+let successCount = 0;
+
+for (
+  let i = 0;
+  i < loops;
+  i++
+) {
   try {
     await tick();
+    successCount++;
   } catch (error) {
-    console.error(error);
-
-    if (i === loops - 1) {
-      process.exitCode = 1;
-    }
+    console.error(
+      "本轮更新失败:",
+      error.message
+    );
   }
 
   if (
@@ -562,4 +812,10 @@ for (let i = 0; i < loops; i++) {
         )
     );
   }
+}
+
+if (
+  successCount === 0
+) {
+  process.exitCode = 1;
 }
