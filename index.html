@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>加拿大28数据助手</title>
+<style>
+:root{
+  --bg:#07111d;--card:#0d1b2a;--line:#20354b;--gold:#f6c453;--text:#f5f7fa;
+  --muted:#8fa3b8;--green:#55d68b;--red:#ff7272;--panel:#102338
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:linear-gradient(#07111d,#0b1826);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif
+}
+main{max-width:560px;margin:auto;padding:16px}
+.head{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}
+.head b{font-size:22px}
+.tag{font-size:12px;background:var(--gold);color:#111;padding:5px 9px;border-radius:20px;font-weight:800}
+.ad{display:block;background:linear-gradient(135deg,#6c2cff,#ff5d8f);padding:18px;border-radius:16px;text-align:center;font-weight:800;margin-bottom:12px;color:#fff;text-decoration:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
+.label{font-size:13px;color:var(--muted);margin-bottom:8px}
+#clock{font-size:40px;color:var(--gold);font-weight:900}
+.issue{font-weight:800;font-size:18px}
+.balls{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}
+.ball{width:43px;height:43px;background:#f4f6f8;color:#111;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:18px}
+.op{color:var(--muted);font-weight:900}
+.sum{color:var(--gold);font-size:22px;font-weight:900}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.tab{
+  border:1px solid var(--line);background:#0b1724;color:var(--muted);padding:12px 5px;
+  border-radius:12px;font-weight:800;font-size:14px
+}
+.tab.active{background:var(--gold);color:#111;border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{background:var(--panel);border:1px solid var(--line);border-radius:14px;text-align:center;padding:14px}
+.pick strong{display:block;color:var(--gold);font-size:23px;margin-top:5px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;text-align:center;padding:11px 5px}
+.stat b{display:block;font-size:18px;color:var(--gold)}
+.stat small{color:var(--muted);font-size:11px}
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:520px}
+th,td{text-align:center;padding:9px 5px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--muted)}
+.hit{color:var(--green);font-weight:900}
+.miss{color:var(--red);font-weight:900}
+.pending{color:var(--gold);font-weight:800}
+.status{font-size:12px;color:var(--green)}
+.warn{font-size:12px;color:var(--muted);line-height:1.6;text-align:center}
+.btn{width:100%;padding:11px;border:0;border-radius:11px;background:var(--gold);font-weight:900;margin-top:10px}
+.algo-panel{display:none}
+.algo-panel.active{display:block}
+.desc{font-size:12px;color:var(--muted);line-height:1.6;margin-top:10px}
+
+.challenge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.challenge-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.challenge-box b{display:block;font-size:22px;color:var(--gold);margin-top:4px}
+.progress{height:12px;background:#081522;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin:12px 0}
+.progress span{display:block;height:100%;background:var(--gold);width:0%}
+.action{background:#0b1724;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+.action strong{color:var(--gold)}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.controls button{margin-top:0}
+.btn-secondary{background:#13283e;color:#fff;border:1px solid var(--line)}
+
+</style>
+</head>
+<body>
+<main>
+  <div class="head">
+    <b>加拿大28数据助手</b>
+    <span class="tag">三算法版</span>
+  </div>
+
+  <a class="ad" href="#" onclick="return false">你的广告位｜后续可替换文字和链接</a>
+
+  <section class="card">
+    <div class="label">实时状态 <span class="status" id="status">正在连接数据源…</span></div>
+    <div class="issue" id="nextIssue">下一期：--</div>
+    <div id="clock">--:--</div>
+  </section>
+
+  <section class="card">
+    <div class="label">最新开奖</div>
+    <div class="issue" id="lastIssue">第 -- 期</div>
+    <div class="balls">
+      <span class="ball" id="a">-</span><span class="op">+</span>
+      <span class="ball" id="b">-</span><span class="op">+</span>
+      <span class="ball" id="c">-</span><span class="op">=</span>
+      <span class="sum" id="sum">--</span>
+    </div>
+  </section>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="a1">算法一</button>
+    <button class="tab" data-tab="a2">算法二</button>
+    <button class="tab" data-tab="a3">算法三</button>
+  </div>
+
+  <section class="algo-panel active" id="a1">
+    <div class="card">
+      <div class="label">算法一｜接口预测</div>
+      <div class="grid">
+        <div class="pick">双组合<strong id="a1Combo">-- / --</strong></div><span id="a1ModelConfidence" data-value="0" style="display:none"></span>
+        <div class="pick">杀组<strong id="a1Kill">--</strong></div>
+      </div>
+      <div class="desc">主组合来自现有预测接口，第二组合根据近期频率补足；杀组来自杀组接口。</div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法一统计</div>
+      <div class="stats">
+        <div class="stat"><b id="a1Rate20">--</b><small>近20期双组合</small></div>
+        <div class="stat"><b id="a1Kill20">--</b><small>近20期杀组</small></div>
+        <div class="stat"><b id="a1Rate100">--</b><small>近100期双组合</small></div>
+        <div class="stat"><b id="a1Kill100">--</b><small>近100期杀组</small></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法一近期记录</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>期号</th><th>双组合</th><th>杀组</th><th>实际</th><th>双组</th><th>杀组</th></tr></thead>
+        <tbody id="a1Records"></tbody>
+      </table></div>
+    </div>
+  
+    <div class="card">
+      <div class="label">算法一｜300→500积分测试</div>
+      <div class="challenge-grid">
+        <div class="challenge-box">当前积分<b id="sim1Points">300</b></div>
+        <div class="challenge-box">单边积分<b id="sim1Stake">5</b></div>
+        <div class="challenge-box">当前手数<b id="sim1Step">1</b></div>
+        <div class="challenge-box">模型信心<b id="sim1Confidence">--</b></div>
+      </div>
+
+      <div class="action">
+        <div>推荐投注：<strong id="sim1Bet">等待预测</strong></div>
+        <div style="margin-top:6px">当前状态：<strong id="sim1Status">等待开奖</strong></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b id="sim1Success">0</b><small>成功轮数</small></div>
+        <div class="stat"><b id="sim1Fail">0</b><small>失败轮数</small></div>
+        <div class="stat"><b id="sim1Round">1</b><small>当前轮次</small></div>
+        <div class="stat"><b id="sim1Net">0</b><small>累计模拟</small></div>
+      </div>
+
+      <div class="desc">
+        单边5积分起步；如果本期推荐为大单 / 大双，则显示“大单5　大双5”。
+        未中后下一手积分变化时，推荐投注会同步变成“大单10　大双10”等；低信心时直接显示“跳过”。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法一｜积分模式记录</div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>轮次</th><th>结果</th><th>结束积分</th><th>最高手数</th></tr>
+          </thead>
+          <tbody id="sim1History">
+            <tr><td colspan="4" class="pending">暂无记录</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</section>
+
+  <section class="algo-panel" id="a2">
+    <div class="card">
+      <div class="label">算法二｜近期趋势</div>
+      <div class="grid">
+        <div class="pick">双组合<strong id="a2Combo">-- / --</strong></div><span id="a2ModelConfidence" data-value="0" style="display:none"></span>
+        <div class="pick">杀组<strong id="a2Kill">--</strong></div>
+      </div>
+      <div class="desc">最近30期加权，越近期权重越高；双组合取趋势分较高的两个，杀组取趋势分最低的一个。</div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法二统计</div>
+      <div class="stats">
+        <div class="stat"><b id="a2Rate20">--</b><small>近20期双组合</small></div>
+        <div class="stat"><b id="a2Kill20">--</b><small>近20期杀组</small></div>
+        <div class="stat"><b id="a2Rate100">--</b><small>近100期双组合</small></div>
+        <div class="stat"><b id="a2Kill100">--</b><small>近100期杀组</small></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法二近期记录</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>期号</th><th>双组合</th><th>杀组</th><th>实际</th><th>双组</th><th>杀组</th></tr></thead>
+        <tbody id="a2Records"></tbody>
+      </table></div>
+    </div>
+  
+    <div class="card">
+      <div class="label">算法二｜300→500积分测试</div>
+      <div class="challenge-grid">
+        <div class="challenge-box">当前积分<b id="sim2Points">300</b></div>
+        <div class="challenge-box">单边积分<b id="sim2Stake">5</b></div>
+        <div class="challenge-box">当前手数<b id="sim2Step">1</b></div>
+        <div class="challenge-box">模型信心<b id="sim2Confidence">--</b></div>
+      </div>
+
+      <div class="action">
+        <div>推荐投注：<strong id="sim2Bet">等待预测</strong></div>
+        <div style="margin-top:6px">当前状态：<strong id="sim2Status">等待开奖</strong></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b id="sim2Success">0</b><small>成功轮数</small></div>
+        <div class="stat"><b id="sim2Fail">0</b><small>失败轮数</small></div>
+        <div class="stat"><b id="sim2Round">1</b><small>当前轮次</small></div>
+        <div class="stat"><b id="sim2Net">0</b><small>累计模拟</small></div>
+      </div>
+
+      <div class="desc">
+        单边5积分起步；如果本期推荐为大单 / 大双，则显示“大单5　大双5”。
+        未中后下一手积分变化时，推荐投注会同步变成“大单10　大双10”等；低信心时直接显示“跳过”。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法二｜积分模式记录</div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>轮次</th><th>结果</th><th>结束积分</th><th>最高手数</th></tr>
+          </thead>
+          <tbody id="sim2History">
+            <tr><td colspan="4" class="pending">暂无记录</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</section>
+
+  <section class="algo-panel" id="a3">
+    <div class="card">
+      <div class="label">算法三｜长期稳定</div>
+      <div class="grid">
+        <div class="pick">双组合<strong id="a3Combo">-- / --</strong></div><span id="a3ModelConfidence" data-value="0" style="display:none"></span>
+        <div class="pick">杀组<strong id="a3Kill">--</strong></div>
+      </div>
+      <div class="desc">使用最近100期整体分布并加入轻度遗漏修正，更偏长期稳定，不追短线变化。</div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法三统计</div>
+      <div class="stats">
+        <div class="stat"><b id="a3Rate20">--</b><small>近20期双组合</small></div>
+        <div class="stat"><b id="a3Kill20">--</b><small>近20期杀组</small></div>
+        <div class="stat"><b id="a3Rate100">--</b><small>近100期双组合</small></div>
+        <div class="stat"><b id="a3Kill100">--</b><small>近100期杀组</small></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法三近期记录</div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>期号</th><th>双组合</th><th>杀组</th><th>实际</th><th>双组</th><th>杀组</th></tr></thead>
+        <tbody id="a3Records"></tbody>
+      </table></div>
+    </div>
+  
+    <div class="card">
+      <div class="label">算法三｜300→500积分测试</div>
+      <div class="challenge-grid">
+        <div class="challenge-box">当前积分<b id="sim3Points">300</b></div>
+        <div class="challenge-box">单边积分<b id="sim3Stake">5</b></div>
+        <div class="challenge-box">当前手数<b id="sim3Step">1</b></div>
+        <div class="challenge-box">模型信心<b id="sim3Confidence">--</b></div>
+      </div>
+
+      <div class="action">
+        <div>推荐投注：<strong id="sim3Bet">等待预测</strong></div>
+        <div style="margin-top:6px">当前状态：<strong id="sim3Status">等待开奖</strong></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b id="sim3Success">0</b><small>成功轮数</small></div>
+        <div class="stat"><b id="sim3Fail">0</b><small>失败轮数</small></div>
+        <div class="stat"><b id="sim3Round">1</b><small>当前轮次</small></div>
+        <div class="stat"><b id="sim3Net">0</b><small>累计模拟</small></div>
+      </div>
+
+      <div class="desc">
+        单边5积分起步；如果本期推荐为大单 / 大双，则显示“大单5　大双5”。
+        未中后下一手积分变化时，推荐投注会同步变成“大单10　大双10”等；低信心时直接显示“跳过”。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="label">算法三｜积分模式记录</div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>轮次</th><th>结果</th><th>结束积分</th><th>最高手数</th></tr>
+          </thead>
+          <tbody id="sim3History">
+            <tr><td colspan="4" class="pending">暂无记录</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</section>
+
+
+  
+
+
+
+  
+
+<button class="btn" onclick="loadAll()">立即刷新</button>
+
+  <div class="warn" style="margin-top:12px">
+    三套算法会分别保存自己的预测记录并开奖后核对。历史表现不代表未来结果，也不保证命中。
+  </div>
+</main>
+
+<script>
+const BASE='https://pc28.help';
+let remain=0, loading=false;
+const $=id=>document.getElementById(id);
+const combosAll=['大单','大双','小单','小双'];
+
+function parseClock(s){
+  if(!s)return 0;
+  const p=String(s).split(':').map(Number);
+  return p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1];
+}
+function fmt(s){
+  s=Math.max(0,Number(s)||0);
+  return String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
+}
+function classify(sum){
+  return (sum<=13?'小':'大') + (sum%2===0?'双':'单');
+}
+function abc(nbrs){
+  const x=String(nbrs||'').split(',').map(Number);
+  if(x.length<20)return null;
+  const one=[1,4,7,10,13,16].reduce((s,i)=>s+(x[i]||0),0)%10;
+  const two=[2,5,8,11,14,17].reduce((s,i)=>s+(x[i]||0),0)%10;
+  const three=[3,6,9,12,15,18].reduce((s,i)=>s+(x[i]||0),0)%10;
+  return [one,two,three];
+}
+async function j(path){
+  const r=await fetch(BASE+path,{cache:'no-store'});
+  if(!r.ok)throw Error('HTTP '+r.status);
+  return r.json();
+}
+function normalizeCombo(v){
+  const s=String(v||'').replace(/\s+/g,'');
+  return combosAll.find(x=>s.includes(x)) || null;
+}
+function getRows(kj){
+  return (kj.data||[]).map((r,i)=>({
+    issue:String(r.nbr||''),
+    sum:Number(r.number),
+    combo:r.combination || classify(Number(r.number)),
+    idx:i
+  })).filter(r=>Number.isFinite(r.sum));
+}
+
+/* ---------- 三套算法 ---------- */
+function algo1(kj, sz, sha){
+  const rows=getRows(kj).slice(0,100);
+  const primary=normalizeCombo(sz?.data?.[0]?.predict) || rows[0]?.combo || '大单';
+  const kill=normalizeCombo(sha?.data?.[0]?.predict) || null;
+
+  const counts=Object.fromEntries(combosAll.map(c=>[c,0]));
+  rows.forEach(r=>counts[r.combo]++);
+
+  let candidates=combosAll.filter(c=>c!==primary && c!==kill);
+  if(!candidates.length)candidates=combosAll.filter(c=>c!==primary);
+
+  // 第二组合优先选长期样本里相对稳定、且不与杀组冲突的一个
+  candidates.sort((a,b)=>counts[b]-counts[a]);
+  const second=candidates[0];
+
+  // 接口主组合 + 杀组不冲突时提升信心
+  let confidence=52;
+  if(kill && kill!==primary && kill!==second) confidence+=10;
+  const topFreq=Math.max(counts[primary]||0,counts[second]||0);
+  confidence+=Math.min(18,Math.round(topFreq/Math.max(1,rows.length)*40));
+
+  return {
+    combos:[primary,second],
+    kill:kill||combosAll.find(c=>![primary,second].includes(c)),
+    confidence:Math.min(85,confidence)
+  };
+}
+
+function algo2(kj){
+  const rows=getRows(kj).slice(0,30);
+  const score=Object.fromEntries(combosAll.map(c=>[c,0]));
+
+  rows.forEach((r,i)=>{
+    const w=Math.max(0.30,1-i*0.026);
+    score[r.combo]+=w;
+  });
+
+  const rank=combosAll.map(c=>({c,s:score[c]})).sort((a,b)=>b.s-a.s);
+  const total=rank.reduce((s,x)=>s+x.s,0)||1;
+  const top2=rank[0].s+rank[1].s;
+  const confidence=Math.round((top2/total)*100);
+
+  return {
+    combos:[rank[0].c,rank[1].c],
+    kill:rank[rank.length-1].c,
+    confidence:Math.min(88,confidence)
+  };
+}
+
+function algo3(kj){
+  const rows=getRows(kj).slice(0,100);
+  const longScore=Object.fromEntries(combosAll.map(c=>[c,0]));
+  const recentScore=Object.fromEntries(combosAll.map(c=>[c,0]));
+
+  rows.forEach((r,i)=>{
+    longScore[r.combo]+=1;
+    if(i<20) recentScore[r.combo]+=Math.max(0.35,1-i*0.035);
+  });
+
+  const rank=combosAll.map(c=>{
+    // 70%长期 + 30%近期，避免过度追短线
+    const s=(longScore[c]/Math.max(1,rows.length))*0.70 +
+            (recentScore[c]/Math.max(1,Math.min(20,rows.length)))*0.30;
+    return {c,s};
+  }).sort((a,b)=>b.s-a.s);
+
+  const total=rank.reduce((s,x)=>s+x.s,0)||1;
+  const confidence=Math.round(((rank[0].s+rank[1].s)/total)*100);
+
+  return {
+    combos:[rank[0].c,rank[1].c],
+    kill:rank[rank.length-1].c,
+    confidence:Math.min(86,confidence)
+  };
+}
+
+/* ---------- 独立记录 ---------- */
+function storeKey(id){return 'jnd28_'+id+'_records_v1'}
+function pendingKey(id){return 'jnd28_'+id+'_pending_v1'}
+
+function getRecords(id){
+  try{return JSON.parse(localStorage.getItem(storeKey(id))||'[]')}catch(e){return []}
+}
+function saveRecords(id,rows){
+  localStorage.setItem(storeKey(id),JSON.stringify(rows.slice(0,100)));
+}
+function getPending(id){
+  try{return JSON.parse(localStorage.getItem(pendingKey(id))||'null')}catch(e){return null}
+}
+function savePending(id,p){
+  localStorage.setItem(pendingKey(id),JSON.stringify(p));
+}
+function clearPending(id){
+  localStorage.removeItem(pendingKey(id));
+}
+
+function settle(id,latestIssue,actualSum){
+  const p=getPending(id);
+  if(!p)return;
+  if(String(p.issue)!==String(latestIssue))return;
+
+  const actualCombo=classify(actualSum);
+  const comboHit=(p.combos||[]).includes(actualCombo);
+  const killSuccess=p.kill ? actualCombo!==p.kill : null;
+
+  const rows=getRecords(id);
+  if(!rows.some(r=>String(r.issue)===String(p.issue))){
+    rows.unshift({
+      issue:String(p.issue),
+      combos:p.combos||[],
+      kill:p.kill||null,
+      actualCombo,
+      actualSum:Number(actualSum),
+      comboHit,
+      killSuccess
+    });
+    saveRecords(id,rows);
+  }
+  clearPending(id);
+}
+
+function ensurePending(id,nextIssue,pred){
+  const old=getPending(id);
+  if(old && String(old.issue)===String(nextIssue))return;
+  savePending(id,{issue:String(nextIssue),combos:pred.combos,kill:pred.kill,createdAt:Date.now()});
+}
+
+/* ---------- 展示 ---------- */
+function renderStats(id){
+  const rows=getRecords(id);
+
+  function fill(limit,suffix){
+    const block=rows.slice(0,limit);
+    const comboSettled=block.filter(r=>r.comboHit!==null && r.comboHit!==undefined);
+    const killSettled=block.filter(r=>r.killSuccess!==null && r.killSuccess!==undefined);
+
+    const comboHits=comboSettled.filter(r=>r.comboHit).length;
+    const killHits=killSettled.filter(r=>r.killSuccess).length;
+
+    $(id+'Rate'+suffix).textContent=comboSettled.length?`${comboHits}/${comboSettled.length}`:'--';
+    $(id+'Kill'+suffix).textContent=killSettled.length?`${killHits}/${killSettled.length}`:'--';
+  }
+  fill(20,'20');
+  fill(100,'100');
+}
+
+function renderRecords(id){
+  const rows=getRecords(id).slice(0,10);
+  const pending=getPending(id);
+  let html='';
+
+  if(pending){
+    html+=`<tr>
+      <td>${pending.issue}</td>
+      <td>${(pending.combos||[]).join(' / ')}</td>
+      <td>${pending.kill||'--'}</td>
+      <td class="pending">待开奖</td>
+      <td class="pending">待核对</td>
+      <td class="pending">待核对</td>
+    </tr>`;
+  }
+
+  html+=rows.map(r=>`<tr>
+    <td>${r.issue}</td>
+    <td>${(r.combos||[]).join(' / ')}</td>
+    <td>${r.kill||'--'}</td>
+    <td>${r.actualCombo} / ${r.actualSum}</td>
+    <td class="${r.comboHit?'hit':'miss'}">${r.comboHit?'中':'错'}</td>
+    <td class="${r.killSuccess?'hit':'miss'}">${r.killSuccess?'成功':'失败'}</td>
+  </tr>`).join('');
+
+  $(id+'Records').innerHTML=html || `<tr><td colspan="6" class="pending">等待产生记录…</td></tr>`;
+  renderStats(id);
+}
+
+function renderPrediction(id,pred){
+  $(id+'Combo').textContent=(pred.combos||[]).join(' / ') || '-- / --';
+  $(id+'Kill').textContent=pred.kill || '--';
+  const c=$(id+'ModelConfidence');
+  if(c)c.dataset.value=String(pred.confidence||0);
+}
+
+/* ---------- 主刷新 ---------- */
+async function loadAll(){
+  if(loading)return;
+  loading=true;
+  try{
+    $('status').textContent='连接中…';
+
+    const [keno,kj,sz,sha]=await Promise.all([
+      j('/api/keno.json?nbr=10'),
+      j('/api/kj.json?nbr=100'),
+      j('/api/sz.json?nbr=1'),
+      j('/api/sha.json?nbr=1')
+    ]);
+
+    remain=parseClock(keno.countdown||kj.countdown);
+
+    const latest=keno.data&&keno.data[0];
+    if(!latest)throw Error('no latest');
+
+    const arr=abc(latest.nbrs);
+    let actualSum=null;
+
+    if(arr){
+      $('a').textContent=arr[0];
+      $('b').textContent=arr[1];
+      $('c').textContent=arr[2];
+      actualSum=arr.reduce((x,y)=>x+y,0);
+      $('sum').textContent=actualSum;
+    }else{
+      const r=(kj.data||[])[0];
+      actualSum=r?Number(r.number):null;
+    }
+
+    $('lastIssue').textContent='第 '+latest.nbr+' 期';
+    const nextIssue=String(Number(latest.nbr)+1);
+    $('nextIssue').textContent='下一期：'+nextIssue;
+
+    if(Number.isFinite(actualSum)){
+      ['a1','a2','a3'].forEach(id=>settle(id,String(latest.nbr),actualSum));
+      ['a1','a2','a3'].forEach(id=>settleModelSim(id,String(latest.nbr),actualSum));
+    }
+
+    const p1=algo1(kj,sz,sha);
+    const p2=algo2(kj);
+    const p3=algo3(kj);
+
+    renderPrediction('a1',p1);
+    renderPrediction('a2',p2);
+    renderPrediction('a3',p3);
+
+    ensurePending('a1',nextIssue,p1);
+    ensurePending('a2',nextIssue,p2);
+    ensurePending('a3',nextIssue,p3);
+    startModelSim('a1',nextIssue,p1);
+    startModelSim('a2',nextIssue,p2);
+    startModelSim('a3',nextIssue,p3);
+    startModelSim('a1',nextIssue,p1);
+    startModelSim('a2',nextIssue,p2);
+    startModelSim('a3',nextIssue,p3);
+
+    ['a1','a2','a3'].forEach(renderRecords);
+    renderAllModelSims();
+
+    $('status').textContent='实时数据已连接';
+  }catch(e){
+    console.warn(e);
+    $('status').textContent='连接失败｜稍后重试';
+    ['a1','a2','a3'].forEach(renderRecords);
+  }finally{
+    loading=false;
+  }
+}
+
+
+
+
+/* ---------- 三模型独立虚拟积分测试 ---------- */
+const SIM_MIN_CONF=58;
+const SIM_START=300;
+const SIM_TARGET=500;
+const SIM_BASE_STAKE=5;
+
+function simKey(id){ return 'jnd28_'+id+'_independent_sim_v2'; }
+
+function getModelSim(id){
+  try{
+    return JSON.parse(localStorage.getItem(simKey(id))) || {
+      points:SIM_START,round:1,step:1,stake:SIM_BASE_STAKE,
+      success:0,fail:0,net:0,pendingIssue:null,pendingCombos:[],
+      confidence:0,highestStep:1,history:[]
+    };
+  }catch(e){
+    return {
+      points:SIM_START,round:1,step:1,stake:SIM_BASE_STAKE,
+      success:0,fail:0,net:0,pendingIssue:null,pendingCombos:[],
+      confidence:0,highestStep:1,history:[]
+    };
+  }
+}
+
+function saveModelSim(id,s){ localStorage.setItem(simKey(id),JSON.stringify(s)); }
+
+function modelPrediction(id){
+  const comboText=$(id+'Combo').textContent || '';
+  const combos=comboText.split('/').map(x=>x.trim()).filter(x=>x&&x!=='--');
+  const confEl=$(id+'ModelConfidence');
+  const confidence=confEl ? Number(confEl.dataset.value||0) : 0;
+  return {combos:combos.slice(0,2),confidence};
+}
+
+function settleModelSim(id,latestIssue,actualSum){
+  const s=getModelSim(id);
+  if(!s.pendingIssue || String(s.pendingIssue)!==String(latestIssue)) return;
+
+  const actualCombo=classify(actualSum);
+  const hit=(s.pendingCombos||[]).includes(actualCombo);
+
+  if(hit){
+    // 虚拟积分测试：命中后加单边积分并回到基础手数
+    s.points += s.stake;
+    s.net += s.stake;
+    s.step=1;
+    s.stake=SIM_BASE_STAKE;
+  }else{
+    const loss=s.stake*2;
+    s.points -= loss;
+    s.net -= loss;
+    s.step += 1;
+    s.stake *= 2;
+    s.highestStep=Math.max(s.highestStep,s.step);
+  }
+
+  s.pendingIssue=null;
+  s.pendingCombos=[];
+
+  if(s.points>=SIM_TARGET){
+    s.success++;
+    s.history.unshift({round:s.round,result:'成功',endPoints:s.points,highestStep:s.highestStep});
+    s.round++;
+    s.points=SIM_START;s.step=1;s.stake=SIM_BASE_STAKE;s.highestStep=1;
+  }else if(s.points<=0 || s.points < s.stake*2){
+    s.fail++;
+    s.history.unshift({round:s.round,result:'失败',endPoints:Math.max(0,s.points),highestStep:s.highestStep});
+    s.round++;
+    s.points=SIM_START;s.step=1;s.stake=SIM_BASE_STAKE;s.highestStep=1;
+  }
+
+  saveModelSim(id,s);
+}
+
+function startModelSim(id,nextIssue,pred){
+  const s=getModelSim(id);
+  if(s.pendingIssue) return;
+
+  s.confidence=pred.confidence||0;
+
+  // 低信心直接跳过，不建立下注记录
+  if(!pred.combos || pred.combos.length<2 || s.confidence<SIM_MIN_CONF){
+    saveModelSim(id,s);
+    return;
+  }
+
+  if(s.points < s.stake*2){
+    s.fail++;
+    s.history.unshift({round:s.round,result:'失败',endPoints:s.points,highestStep:s.highestStep});
+    s.round++;
+    s.points=SIM_START;s.step=1;s.stake=SIM_BASE_STAKE;s.highestStep=1;
+  }
+
+  s.pendingIssue=String(nextIssue);
+  s.pendingCombos=[...pred.combos];
+  saveModelSim(id,s);
+}
+
+function renderModelSim(id,idx){
+  const s=getModelSim(id);
+  const pred=modelPrediction(id);
+
+  $('sim'+idx+'Points').textContent=s.points;
+  $('sim'+idx+'Stake').textContent=s.stake;
+  $('sim'+idx+'Step').textContent=s.step;
+  $('sim'+idx+'Success').textContent=s.success;
+  $('sim'+idx+'Fail').textContent=s.fail;
+  $('sim'+idx+'Round').textContent=s.round;
+  $('sim'+idx+'Net').textContent=(s.net>=0?'+':'')+s.net;
+  $('sim'+idx+'Confidence').textContent=(pred.confidence||s.confidence||0)+'%';
+
+  const combos=s.pendingCombos?.length ? s.pendingCombos : pred.combos;
+
+  if(pred.confidence<SIM_MIN_CONF || combos.length<2){
+    $('sim'+idx+'Bet').textContent='跳过';
+    $('sim'+idx+'Status').textContent='低信心，不消耗积分';
+  }else{
+    // 保留用户要求的格式：大单5　大双5 / 大单10　大双10
+    $('sim'+idx+'Bet').textContent=combos.slice(0,2).map(c=>c+s.stake).join('　');
+    $('sim'+idx+'Status').textContent=s.pendingIssue
+      ? ('等待第 '+s.pendingIssue+' 期开奖')
+      : '等待建立下一期测试';
+  }
+}
+
+function renderModelHistory(id,idx){
+  const rows=(getModelSim(id).history||[]).slice(0,20);
+  $('sim'+idx+'History').innerHTML = rows.length ? rows.map(r=>`
+    <tr>
+      <td>${r.round}</td>
+      <td class="${r.result==='成功'?'hit':'miss'}">${r.result}</td>
+      <td>${r.endPoints}</td>
+      <td>${r.highestStep}</td>
+    </tr>`).join('') : '<tr><td colspan="4" class="pending">暂无记录</td></tr>';
+}
+
+function renderAllModelSims(){
+  renderModelSim('a1',1);
+  renderModelSim('a2',2);
+  renderModelSim('a3',3);
+  renderModelHistory('a1',1);
+  renderModelHistory('a2',2);
+  renderModelHistory('a3',3);
+}
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.algo-panel').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    $(btn.dataset.tab).classList.add('active');
+  });
+});
+
+setInterval(()=>{
+  if(remain>0)remain--;
+  $('clock').textContent=fmt(remain);
+  if(remain===0)loadAll();
+},1000);
+
+setInterval(loadAll,15000);
+
+['a1','a2','a3'].forEach(renderRecords);
+renderAllModelSims();
+loadAll();
+</script>
+</body>
+</html>
