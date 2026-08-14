@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>加拿大28数据助手</title>
+<style>
+:root{--bg:#07111d;--card:#0d1b2a;--line:#20354b;--gold:#f6c453;--text:#f5f7fa;--muted:#8fa3b8;--green:#55d68b}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(#07111d,#0b1826);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+main{max-width:520px;margin:auto;padding:16px}.head{display:flex;justify-content:space-between;align-items:center;margin:8px 0 14px}.head b{font-size:22px}.tag{font-size:12px;background:var(--gold);color:#111;padding:5px 9px;border-radius:20px;font-weight:800}
+.ad{display:block;background:linear-gradient(135deg,#6c2cff,#ff5d8f);padding:18px;border-radius:16px;text-align:center;font-weight:800;margin-bottom:12px;color:white;text-decoration:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}.label{font-size:13px;color:var(--muted);margin-bottom:8px}
+#clock{font-size:40px;color:var(--gold);font-weight:900}.issue{font-weight:800;font-size:18px}.balls{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:10px}.ball{width:43px;height:43px;background:#f4f6f8;color:#111;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:18px}.op{color:var(--muted);font-weight:900}.sum{color:var(--gold);font-size:22px;font-weight:900}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pick{background:#102338;border:1px solid var(--line);border-radius:14px;text-align:center;padding:14px}.pick strong{display:block;color:var(--gold);font-size:23px;margin-top:5px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.num{background:#13283e;border:1px solid #29425c;border-radius:12px;text-align:center;padding:12px 2px;font-size:22px;font-weight:900}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:center;padding:9px 4px;border-bottom:1px solid var(--line)}th{color:var(--muted)}
+.status{font-size:12px;color:var(--green)}.warn{font-size:12px;color:var(--muted);line-height:1.6;text-align:center}.btn{width:100%;padding:11px;border:0;border-radius:11px;background:var(--gold);font-weight:900;margin-top:10px}
+</style>
+</head>
+<body><main>
+<div class="head"><b>加拿大28数据助手</b><span class="tag">免费版</span></div>
+<a class="ad" href="#" onclick="return false">你的广告位｜后续可替换文字和链接</a>
+
+<section class="card"><div class="label">实时状态 <span class="status" id="status">正在连接数据源…</span></div>
+<div class="issue" id="nextIssue">下一期：--</div><div id="clock">--:--</div></section>
+
+<section class="card"><div class="label">最新开奖</div><div class="issue" id="lastIssue">第 -- 期</div>
+<div class="balls"><span class="ball" id="a">-</span><span class="op">+</span><span class="ball" id="b">-</span><span class="op">+</span><span class="ball" id="c">-</span><span class="op">=</span><span class="sum" id="sum">--</span></div></section>
+
+<section class="card"><div class="label">双组合参考</div><div class="grid">
+<div class="pick">双组<strong id="sz">--</strong></div><div class="pick">辅助组合<strong id="aux">--</strong></div></div>
+<div class="label" style="margin-top:16px">4个和值参考</div><div class="nums" id="nums"></div>
+<button class="btn" onclick="loadAll()">立即刷新</button></section>
+
+<section class="card"><div class="label">最近开奖</div><table><thead><tr><th>期号</th><th>和值</th><th>组合</th></tr></thead><tbody id="history"></tbody></table></section>
+
+<div class="warn">数据来自第三方公开接口；接口不可用时页面会显示连接失败。预测/参考内容不代表未来开奖结果，也不保证命中。</div>
+</main>
+<script>
+const BASE='https://pc28.help';
+let remain=0, lastKeno=null;
+const $=id=>document.getElementById(id);
+function parseClock(s){if(!s)return 0;let p=s.split(':').map(Number);return p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1]}
+function fmt(s){s=Math.max(0,s|0);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function abc(nbrs){
+ const x=String(nbrs||'').split(',').map(Number);
+ if(x.length<20)return null;
+ const one=[1,4,7,10,13,16].reduce((s,i)=>s+x[i],0)%10;
+ const two=[2,5,8,11,14,17].reduce((s,i)=>s+x[i],0)%10;
+ const three=[3,6,9,12,15,18].reduce((s,i)=>s+x[i],0)%10;
+ return [one,two,three];
+}
+async function j(path){let r=await fetch(BASE+path,{cache:'no-store'});if(!r.ok)throw Error(r.status);return r.json()}
+function fourNums(history){
+ let count=Array(28).fill(0), last=Array(28).fill(999);
+ history.forEach((r,i)=>{let n=Number(r.number);if(n>=0&&n<=27){count[n]++;last[n]=Math.min(last[n],i)}});
+ return [...Array(28).keys()].sort((x,y)=>(count[x]-count[y])||(last[y]-last[x])).slice(0,4).sort((a,b)=>a-b);
+}
+async function loadAll(){
+ try{
+  $('status').textContent='连接中…';
+  const [keno,kj,sz,sha]=await Promise.all([
+   j('/api/keno.json?nbr=10'),j('/api/kj.json?nbr=30'),j('/api/sz.json?nbr=1'),j('/api/sha.json?nbr=1')
+  ]);
+  if(keno.message!=='success'||kj.message!=='success')throw Error('bad response');
+  remain=parseClock(keno.countdown||kj.countdown);
+  const latest=keno.data[0], arr=abc(latest.nbrs);
+  if(arr){
+   $('a').textContent=arr[0];$('b').textContent=arr[1];$('c').textContent=arr[2];
+   $('sum').textContent=arr.reduce((a,b)=>a+b,0);
+  }
+  $('lastIssue').textContent='第 '+latest.nbr+' 期';
+  $('nextIssue').textContent='下一期：'+(Number(latest.nbr)+1);
+  const sp=sz.data&&sz.data[0]?sz.data[0].predict:'--';
+  const ap=sha.data&&sha.data[0]?sha.data[0].predict:'--';
+  $('sz').textContent=sp;$('aux').textContent=ap===sp?'--':ap;
+  const ns=fourNums(kj.data||[]);
+  $('nums').innerHTML=ns.map(n=>'<div class="num">'+String(n).padStart(2,'0')+'</div>').join('');
+  $('history').innerHTML=(kj.data||[]).slice(0,10).map(r=>'<tr><td>'+r.nbr+'</td><td>'+r.number+'</td><td>'+r.combination+'</td></tr>').join('');
+  $('status').textContent='实时数据已连接';
+ }catch(e){
+  console.warn(e);$('status').textContent='连接失败｜稍后重试';
+ }
+}
+setInterval(()=>{if(remain>0)remain--;$('clock').textContent=fmt(remain);if(remain===0)loadAll()},1000);
+setInterval(loadAll,15000);loadAll();
+</script></body></html>
