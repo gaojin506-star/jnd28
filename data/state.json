@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-15T22:55:36.027Z",
+  "updatedAt": "2026-08-15T22:59:05.785Z",
   "latestDraw": {
-    "issue": "3470056",
-    "abc": "5+4+9",
-    "sum": 18,
-    "size": "大",
-    "oe": "双",
-    "combo": "大双",
+    "issue": "3470057",
+    "abc": "3+4+6",
+    "sum": 13,
+    "size": "小",
+    "oe": "单",
+    "combo": "小单",
     "date": "2026-08-16",
-    "time": "06:55:30"
+    "time": "06:59:00"
   },
-  "nextIssue": "3470057",
+  "nextIssue": "3470058",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3470057",
+      "abc": "3+4+6",
+      "sum": 13,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单",
+      "date": "2026-08-16",
+      "time": "06:59:00"
+    },
     {
       "issue": "3470056",
       "abc": "5+4+9",
@@ -1349,16 +1359,6 @@
       "combo": "小单",
       "date": "2026-08-16",
       "time": "01:16:00"
-    },
-    {
-      "issue": "3469958",
-      "abc": "9+0+8",
-      "sum": 17,
-      "size": "大",
-      "oe": "单",
-      "combo": "大单",
-      "date": "2026-08-16",
-      "time": "01:12:30"
     }
   ],
   "v3": {
@@ -1469,11 +1469,11 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3470057",
+    "issue": "3470058",
     "picks": [
       {
         "name": "小单",
-        "confidence": 61
+        "confidence": 63
       },
       {
         "name": "小双",
@@ -2365,10 +2365,28 @@
         61,
         57
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-15T22:55:36.027Z",
+      "actualSum": 13,
+      "actualCombo": "小单",
+      "actualABC": "3+4+6",
+      "autoResult": "对",
+      "settledAt": "2026-08-15T22:59:05.784Z"
+    },
+    "3470058": {
+      "issue": "3470058",
+      "autoPicks": [
+        "小单",
+        "小双"
+      ],
+      "autoConfidence": [
+        63,
+        57
+      ],
       "status": "待",
-      "createdAt": "2026-08-15T22:55:36.027Z"
+      "createdAt": "2026-08-15T22:59:05.785Z"
     }
   },
   "countdown": "03:26",
-  "countdownEndsAt": 1786834742027
+  "countdownEndsAt": 1786834951784
 }
