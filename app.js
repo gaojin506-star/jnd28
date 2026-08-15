@@ -1,107 +1,34 @@
 const $ = id => document.getElementById(id);
 let history = [];
+let latestState = null;
+let countdownSec = null;
+let countdownTimer = null;
 
-function classify(sum){
-  const size = sum <= 13 ? "小" : "大";
-  const oe = sum % 2 === 0 ? "双" : "单";
-  return {size, oe, combo:size+oe};
-}
+function classify(sum){const size=sum<=13?'小':'大',oe=sum%2===0?'双':'单';return {size,oe,combo:size+oe}}
+function parseABC(raw){if(!raw)return null;raw=String(raw).trim().replace(/[＝=].*$/,'');let nums=/^\d{3}$/.test(raw)?raw.split('').map(Number):(raw.match(/\d+/g)||[]).map(Number);if(nums.length!==3||nums.some(n=>!Number.isInteger(n)||n<0||n>9))return null;return nums}
+function setCurrent(r){if(!r)return;$('sum').textContent=r.sum;$('size').textContent=r.size;$('oddEven').textContent=r.oe;$('abc').textContent=r.abc||'--';$('issueText').textContent=r.issue?`第 ${r.issue} 期`:`${r.abc} = ${r.sum}`;$('comboBadge').textContent=r.combo;$('comboBadge').className='badge'}
 
-function parseABC(raw){
-  if(!raw) return null;
-  raw=String(raw).trim().replace(/[＝=].*$/,"");
-  let nums=/^\d{3}$/.test(raw)?raw.split('').map(Number):(raw.match(/\d+/g)||[]).map(Number);
-  if(nums.length!==3||nums.some(n=>!Number.isInteger(n)||n<0||n>9))return null;
-  return nums;
-}
+function setPrediction(state){const ar=state?.autoReference;if(!ar?.picks?.length){$('pick1').textContent='--';$('pick2').textContent='--';$('score1').textContent='参考度 --';$('score2').textContent='参考度 --';$('modelState').textContent='待分析';$('reason').textContent='等待自动开奖数据。';return}$('pick1').textContent=ar.picks[0]?.name||'--';$('pick2').textContent=ar.picks[1]?.name||'--';$('score1').textContent=`模型参考度 ${ar.picks[0]?.confidence??'--'}%`;$('score2').textContent=`模型参考度 ${ar.picks[1]?.confidence??'--'}%`;$('modelState').textContent='已自动更新';$('reason').textContent=ar.reason||'根据近期历史走势自动分析。'}
 
-function setCurrent(r){
-  if(!r)return;
-  $("sum").textContent=r.sum;
-  $("size").textContent=r.size;
-  $("oddEven").textContent=r.oe;
-  $("abc").textContent=r.abc || "--";
-  $("issueText").textContent=r.issue?`第 ${r.issue} 期`:`${r.abc} = ${r.sum}`;
-  $("comboBadge").textContent=r.combo;
-  $("comboBadge").className="badge";
-}
+function setFourCodes(state){const c=state?.consensus4?.codes||[];$('fourIssue').textContent=state?.consensus4?.issue?`第 ${state.consensus4.issue} 期`:'待分析';$('fourCodes').innerHTML=[0,1,2,3].map(i=>`<b>${c[i]!=null?String(c[i]).padStart(2,'0'):'--'}</b>`).join('')}
 
-function setPrediction(state){
-  const ar=state?.autoReference;
-  if(!ar?.picks?.length){
-    $("pick1").textContent="--";$("pick2").textContent="--";
-    $("score1").textContent="参考度 --";$("score2").textContent="参考度 --";
-    $("modelState").textContent="待分析";$("reason").textContent="等待自动开奖数据。";return;
-  }
-  $("pick1").textContent=ar.picks[0]?.name||"--";
-  $("pick2").textContent=ar.picks[1]?.name||"--";
-  $("score1").textContent=`模型参考度 ${ar.picks[0]?.confidence??'--'}%`;
-  $("score2").textContent=`模型参考度 ${ar.picks[1]?.confidence??'--'}%`;
-  $("modelState").textContent="已自动更新";
-  $("reason").textContent=ar.reason||"根据近期历史走势自动分析。";
-}
+function autoReferenceFromRows(rows){const C=['大单','大双','小单','小双'],score=Object.fromEntries(C.map(c=>[c,1.2]));rows=rows.slice(0,30);rows.forEach((r,i)=>{if(score[r.combo]!=null)score[r.combo]+=1.1*(1-i/Math.max(30,rows.length+1))});const last8=rows.slice(0,8),cnt=Object.fromEntries(C.map(c=>[c,0]));last8.forEach(r=>{if(cnt[r.combo]!=null)cnt[r.combo]++});if(last8.length>=4){const mn=Math.min(...Object.values(cnt));C.forEach(c=>{if(cnt[c]===mn)score[c]+=.9})}if(rows.length){const last=rows[0].combo,opp={'大双':'小单','小单':'大双','大单':'小双','小双':'大单'}[last];let streak=0;for(const r of rows){if(r.combo===last)streak++;else break}if(streak>=2&&opp){score[opp]+=Math.min(2.4,streak*.6);score[last]-=Math.min(1,streak*.2)}}const last10=rows.slice(0,10);if(last10.length>=6){const big=last10.filter(r=>r.size==='大').length,odd=last10.filter(r=>r.oe==='单').length;if(big>=7){score['小单']+=.65;score['小双']+=.65}else if(big<=3){score['大单']+=.65;score['大双']+=.65}if(odd>=7){score['大双']+=.5;score['小双']+=.5}else if(odd<=3){score['大单']+=.5;score['小单']+=.5}}return Object.entries(score).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0])}
 
-function render(){
-  $("total").textContent=history.length;
-  $("big").textContent=history.filter(r=>r.size==="大").length;
-  $("small").textContent=history.filter(r=>r.size==="小").length;
-  $("odd").textContent=history.filter(r=>r.oe==="单").length;
-  $("even").textContent=history.filter(r=>r.oe==="双").length;
-  if(history.length){
-    const first=history[0].combo;let n=0;for(const r of history){if(r.combo===first)n++;else break}
-    $("streak").textContent=`${first}×${n}`;
-  }else $("streak").textContent="--";
+function normalizeState(state){const predByIssue=new Map();const snaps=state?.v3?.snapshots||{};for(const [issue,s] of Object.entries(snaps)){if(s?.codes)predByIssue.set(issue,s.codes.join(' / '))}return (state?.drawHistory||[]).map(r=>({issue:String(r.issue||''),sum:Number(r.sum),...classify(Number(r.sum)),abc:r.abc?Array.isArray(r.abc)?r.abc.join('+'):String(r.abc):'--',prediction:predByIssue.get(String(r.issue))||'--'})).filter(r=>Number.isFinite(r.sum))}
 
-  const trend=$("trend");
-  if(!history.length){trend.className="trend empty";trend.innerHTML="暂无数据"}
-  else{trend.className="trend";trend.innerHTML=history.slice(0,12).map(r=>`<div class="ball"><b>${r.sum}</b><span>${r.combo}</span></div>`).join('')}
+function pct(arr,n){const a=arr.slice(0,n);if(!a.length)return '--';return Math.round(a.filter(x=>x.hit).length/a.length*100)+'%'}
+function buildAutoBacktest(){const out=[];for(let i=0;i<history.length-6;i++){const prior=history.slice(i+1);if(prior.length<6)continue;const picks=autoReferenceFromRows(prior);out.push({issue:history[i].issue,picks,actual:history[i].combo,hit:picks.includes(history[i].combo)})}return out}
+function buildFourBacktest(state){return Object.values(state?.v3?.snapshots||{}).filter(s=>s.judgement==='对'||s.judgement==='错').sort((a,b)=>Number(b.issue)-Number(a.issue)).map(s=>({issue:String(s.issue),codes:s.codes||[],actual:s.actualSum,hit:s.judgement==='对'}))}
+function renderBacktests(state){const auto=buildAutoBacktest(),four=buildFourBacktest(state);$('auto10').textContent=pct(auto,10);$('auto30').textContent=pct(auto,30);$('auto100').textContent=pct(auto,100);$('four10').textContent=pct(four,10);$('four30').textContent=pct(four,30);$('four100').textContent=pct(four,100);const fourMap=new Map(four.map(x=>[x.issue,x]));const rows=auto.slice(0,20);$('backtestList').innerHTML=rows.length?rows.map(a=>{const f=fourMap.get(a.issue);return `<div class="bt-item"><div class="iss">#${a.issue}</div><div class="preds">${a.picks.join('/')}</div><div class="judge ${a.hit?'ok':'bad'}">${a.hit?'对':'错'}</div><div class="preds">${f?f.codes.map(n=>String(n).padStart(2,'0')).join('·'):'--'}</div><div class="judge ${!f?'wait':f.hit?'ok':'bad'}">${!f?'待':f.hit?'对':'错'}</div></div>`}).join(''):'<div class="history-empty">暂无回测记录</div>'}
 
-  const list=$("historyList");
-  if(!history.length)list.innerHTML='<div class="history-empty">暂无记录</div>';
-  else list.innerHTML=history.slice(0,40).map(r=>`<div class="history-item"><div class="num">#${r.issue||'本地'}</div><div class="abc">${r.abc||'--'}</div><div class="sum">${r.sum}</div><div class="combo">${r.combo}</div><div class="pred">${r.prediction||'--'}</div></div>`).join('');
-}
+function render(){ $('total').textContent=history.length;$('big').textContent=history.filter(r=>r.size==='大').length;$('small').textContent=history.filter(r=>r.size==='小').length;$('odd').textContent=history.filter(r=>r.oe==='单').length;$('even').textContent=history.filter(r=>r.oe==='双').length;if(history.length){const first=history[0].combo;let n=0;for(const r of history){if(r.combo===first)n++;else break}$('streak').textContent=`${first}×${n}`}else $('streak').textContent='--';const trend=$('trend');if(!history.length){trend.className='trend empty';trend.innerHTML='暂无数据'}else{trend.className='trend';trend.innerHTML=history.slice(0,12).map(r=>`<div class="ball"><b>${r.sum}</b><span>${r.combo}</span></div>`).join('')}const list=$('historyList');if(!history.length)list.innerHTML='<div class="history-empty">暂无记录</div>';else list.innerHTML=history.slice(0,40).map(r=>`<div class="history-item"><div class="num">#${r.issue||'本地'}</div><div class="abc">${r.abc||'--'}</div><div class="sum">${r.sum}</div><div class="combo">${r.combo}</div><div class="pred">${r.prediction||'--'}</div></div>`).join('')}
 
-function normalizeState(state){
-  const predByIssue=new Map();
-  const snaps=state?.v3?.snapshots||{};
-  for(const [issue,s] of Object.entries(snaps)){
-    if(s?.codes)predByIssue.set(issue,s.codes.join(' / '));
-  }
-  return (state?.drawHistory||[]).map(r=>({
-    issue:String(r.issue||''),sum:Number(r.sum),...classify(Number(r.sum)),abc:r.abc?Array.isArray(r.abc)?r.abc.join('+'):String(r.abc):'--',prediction:predByIssue.get(String(r.issue))||'--'
-  })).filter(r=>Number.isFinite(r.sum));
-}
+function parseCountdown(s){if(!s)return null;const a=String(s).split(':').map(Number);if(a.some(Number.isNaN))return null;return a.length===3?a[0]*3600+a[1]*60+a[2]:a[0]*60+a[1]}
+function formatCountdown(sec){if(sec==null||sec<0)return '--:--';const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=sec%60;return h>0?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`}
+function startCountdown(){if(countdownTimer)clearInterval(countdownTimer);countdownTimer=setInterval(()=>{if(countdownSec!=null&&countdownSec>0)countdownSec--;$('countdown').textContent=formatCountdown(countdownSec)},1000)}
+async function syncCountdown(){try{const c=new AbortController(),t=setTimeout(()=>c.abort(),5000);const r=await fetch(`https://pc28.help/api/preview.json?t=${Date.now()}`,{cache:'no-store',signal:c.signal});clearTimeout(t);if(!r.ok)throw 0;const j=await r.json();countdownSec=parseCountdown(j.countdown);$('countdown').textContent=formatCountdown(countdownSec)}catch(e){if(countdownSec==null)$('countdown').textContent='--:--'}}
 
-async function syncData(){
-  $("syncHint").textContent="正在同步最新开奖…";
-  try{
-    const res=await fetch(`data/state.json?t=${Date.now()}`,{cache:'no-store'});
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const state=await res.json();history=normalizeState(state);
-    if(history[0])setCurrent(history[0]);
-    setPrediction(state);render();
-    const d=state.updatedAt?new Date(state.updatedAt):new Date();
-    $("lastSync").textContent=d.toLocaleTimeString('zh-CN',{hour12:false,hour:'2-digit',minute:'2-digit'});
-    $("syncHint").textContent=`已同步 · 下一期 ${state.nextIssue||'--'}`;
-  }catch(e){
-    $("syncHint").textContent="自动同步失败，可手动录入";
-    $("lastSync").textContent="同步失败";
-  }
-}
-
-function manualAnalyze(){
-  const abc=parseABC($("quickInput").value);
-  if(!abc){$("error").textContent="请输入3个 0-9 数字，例如 9+6+0 或 960";return}
-  $("error").textContent="";
-  const sum=abc.reduce((a,b)=>a+b,0),c=classify(sum);
-  setCurrent({issue:'',abc:abc.join('+'),sum,...c});
-  $("quickInput").value="";
-}
-
-$("goBtn").addEventListener("click",manualAnalyze);
-$("quickInput").addEventListener("keydown",e=>{if(e.key==='Enter'){e.preventDefault();manualAnalyze()}});
-$("syncBtn").addEventListener("click",syncData);
-
-syncData();
-setInterval(syncData,15000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncData()});
+async function syncData(){ $('syncHint').textContent='正在同步最新开奖…';try{const res=await fetch(`data/state.json?t=${Date.now()}`,{cache:'no-store'});if(!res.ok)throw new Error('HTTP '+res.status);const state=await res.json();latestState=state;history=normalizeState(state);if(history[0])setCurrent(history[0]);setPrediction(state);setFourCodes(state);render();renderBacktests(state);$('nextIssue').textContent=`下一期 ${state.nextIssue||'--'}`;const d=state.updatedAt?new Date(state.updatedAt):new Date();$('lastSync').textContent=d.toLocaleTimeString('zh-CN',{hour12:false,hour:'2-digit',minute:'2-digit'});$('syncHint').textContent=`已同步 · 下一期 ${state.nextIssue||'--'}`;syncCountdown()}catch(e){$('syncHint').textContent='自动同步失败，可手动录入';$('lastSync').textContent='同步失败'}}
+function manualAnalyze(){const abc=parseABC($('quickInput').value);if(!abc){$('error').textContent='请输入3个 0-9 数字，例如 9+6+0 或 960';return}$('error').textContent='';const sum=abc.reduce((a,b)=>a+b,0),c=classify(sum);setCurrent({issue:'',abc:abc.join('+'),sum,...c});$('quickInput').value=''}
+$('goBtn').addEventListener('click',manualAnalyze);$('quickInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();manualAnalyze()}});$('syncBtn').addEventListener('click',syncData);
+startCountdown();syncData();setInterval(syncData,15000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncData()});
