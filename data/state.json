@@ -1,25 +1,39 @@
 {
-  "updatedAt": "2026-08-15T00:40:33.055Z",
+  "updatedAt": "2026-08-15T00:41:30.371Z",
   "latestDraw": {
-    "issue": "3469683",
-    "sum": 17,
-    "combo": "大单"
+    "issue": "3469684",
+    "sum": 13,
+    "combo": "小单"
   },
-  "nextIssue": "3469684",
+  "nextIssue": "3469685",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
       "current": {
-        "issue": "3469684",
+        "issue": "3469685",
         "combos": [
           "大单",
           "大双"
         ],
-        "kill": "小单",
+        "kill": "小双",
         "confidence": 70,
-        "createdAt": "2026-08-15T00:39:35.818Z"
+        "createdAt": "2026-08-15T00:41:30.371Z"
       },
       "records": [
+        {
+          "issue": "3469684",
+          "combos": [
+            "大单",
+            "大双"
+          ],
+          "kill": "小单",
+          "confidence": 70,
+          "actualCombo": "小单",
+          "actualSum": 13,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:41:30.370Z"
+        },
         {
           "issue": "3469679",
           "combos": [
@@ -67,16 +81,30 @@
     "a2": {
       "name": "算法二｜短期结构",
       "current": {
-        "issue": "3469684",
+        "issue": "3469685",
         "combos": [
-          "大单",
-          "大双"
+          "大双",
+          "大单"
         ],
         "kill": "小单",
-        "confidence": 70,
-        "createdAt": "2026-08-15T00:39:35.818Z"
+        "confidence": 66,
+        "createdAt": "2026-08-15T00:41:30.371Z"
       },
       "records": [
+        {
+          "issue": "3469684",
+          "combos": [
+            "大单",
+            "大双"
+          ],
+          "kill": "小单",
+          "confidence": 70,
+          "actualCombo": "小单",
+          "actualSum": 13,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:41:30.371Z"
+        },
         {
           "issue": "3469679",
           "combos": [
@@ -124,16 +152,30 @@
     "a3": {
       "name": "算法三｜长期稳定",
       "current": {
-        "issue": "3469684",
+        "issue": "3469685",
         "combos": [
           "大双",
           "小双"
         ],
         "kill": "小单",
-        "confidence": 56,
-        "createdAt": "2026-08-15T00:39:35.818Z"
+        "confidence": 55,
+        "createdAt": "2026-08-15T00:41:30.371Z"
       },
       "records": [
+        {
+          "issue": "3469684",
+          "combos": [
+            "大双",
+            "小双"
+          ],
+          "kill": "小单",
+          "confidence": 56,
+          "actualCombo": "小单",
+          "actualSum": 13,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:41:30.371Z"
+        },
         {
           "issue": "3469679",
           "combos": [
@@ -239,6 +281,11 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469684",
+      "sum": 13,
+      "combo": "小单"
+    },
     {
       "issue": "3469683",
       "sum": 17,
@@ -728,11 +775,6 @@
       "issue": "3469586",
       "sum": 12,
       "combo": "小双"
-    },
-    {
-      "issue": "3469585",
-      "sum": 14,
-      "combo": "大双"
     }
   ]
 }
