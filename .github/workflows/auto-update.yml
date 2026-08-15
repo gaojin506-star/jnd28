@@ -1,4 +1,4 @@
-name: Auto update V3 predictions
+name: Live draw updater
 
 on:
   workflow_dispatch:
@@ -7,6 +7,8 @@ on:
     paths:
       - "scripts/update.mjs"
       - "index.html"
+      - "app.js"
+      - "style.css"
       - ".github/workflows/auto-update.yml"
   schedule:
     - cron: "*/5 * * * *"
@@ -15,7 +17,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: jnd28-auto-update
+  group: jnd28-live-update
   cancel-in-progress: false
 
 jobs:
@@ -37,17 +39,17 @@ jobs:
           git config user.name "jnd28-bot"
           git config user.email "actions@users.noreply.github.com"
 
-      - name: Poll and publish repeatedly
+      - name: Poll live draw source
         run: |
-          for i in 1 2 3 4 5; do
-            POLL_LOOPS=1 POLL_INTERVAL_MS=0 node scripts/update.mjs
+          for i in $(seq 1 30); do
+            POLL_LOOPS=1 POLL_INTERVAL_MS=0 node scripts/update.mjs || true
             git add data/state.json
             if ! git diff --cached --quiet; then
-              git commit -m "Auto update V3 predictions"
+              git commit -m "Live draw update"
               git pull --rebase origin main
               git push
             fi
-            if [ "$i" != "5" ]; then
-              sleep 55
+            if [ "$i" != "30" ]; then
+              sleep 10
             fi
           done
