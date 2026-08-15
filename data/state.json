@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-08-15T00:25:28.141Z",
+  "updatedAt": "2026-08-15T00:39:35.818Z",
   "latestDraw": {
-    "issue": "3469679",
-    "sum": 14,
-    "combo": "大双"
+    "issue": "3469683",
+    "sum": 17,
+    "combo": "大单"
   },
-  "nextIssue": "3469680",
+  "nextIssue": "3469684",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
       "current": {
-        "issue": "3469680",
+        "issue": "3469684",
         "combos": [
-          "大双",
-          "大单"
+          "大单",
+          "大双"
         ],
-        "kill": "小双",
+        "kill": "小单",
         "confidence": 70,
-        "createdAt": "2026-08-15T00:23:37.306Z"
+        "createdAt": "2026-08-15T00:39:35.818Z"
       },
       "records": [
         {
@@ -67,14 +67,14 @@
     "a2": {
       "name": "算法二｜短期结构",
       "current": {
-        "issue": "3469680",
+        "issue": "3469684",
         "combos": [
-          "大双",
-          "大单"
+          "大单",
+          "大双"
         ],
-        "kill": "小双",
-        "confidence": 66,
-        "createdAt": "2026-08-15T00:23:37.306Z"
+        "kill": "小单",
+        "confidence": 70,
+        "createdAt": "2026-08-15T00:39:35.818Z"
       },
       "records": [
         {
@@ -124,14 +124,14 @@
     "a3": {
       "name": "算法三｜长期稳定",
       "current": {
-        "issue": "3469680",
+        "issue": "3469684",
         "combos": [
           "大双",
           "小双"
         ],
         "kill": "小单",
-        "confidence": 57,
-        "createdAt": "2026-08-15T00:23:37.306Z"
+        "confidence": 56,
+        "createdAt": "2026-08-15T00:39:35.818Z"
       },
       "records": [
         {
@@ -239,6 +239,26 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469683",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469682",
+      "sum": 6,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469681",
+      "sum": 20,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469680",
+      "sum": 15,
+      "combo": "大单"
+    },
     {
       "issue": "3469679",
       "sum": 14,
@@ -713,26 +733,6 @@
       "issue": "3469585",
       "sum": 14,
       "combo": "大双"
-    },
-    {
-      "issue": "3469584",
-      "sum": 4,
-      "combo": "小双"
-    },
-    {
-      "issue": "3469583",
-      "sum": 20,
-      "combo": "大双"
-    },
-    {
-      "issue": "3469582",
-      "sum": 14,
-      "combo": "大双"
-    },
-    {
-      "issue": "3469581",
-      "sum": 6,
-      "combo": "小双"
     }
   ]
 }
