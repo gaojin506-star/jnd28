@@ -19,23 +19,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Poll data in background
-        env:
-          POLL_LOOPS: "5"
-          POLL_INTERVAL_MS: "55000"
-        run: node scripts/update.mjs
-
-      - name: Commit updated state
+      - name: Configure git
         run: |
           git config user.name "jnd28-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/state.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Auto update predictions"
-          git pull --rebase origin main
-          git push
+
+      - name: Poll and publish repeatedly
+        run: |
+          for i in 1 2 3 4 5; do
+            POLL_LOOPS=1 POLL_INTERVAL_MS=0 node scripts/update.mjs
+            git add data/state.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Auto update predictions"
+              git pull --rebase origin main
+              git push
+            fi
+            if [ "$i" != "5" ]; then
+              sleep 55
+            fi
+          done
