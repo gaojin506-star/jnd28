@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-08-15T07:22:00.452Z",
+  "updatedAt": "2026-08-15T08:00:49.147Z",
   "latestDraw": {
-    "issue": "3469798",
+    "issue": "3469809",
     "sum": 17,
     "combo": "大单"
   },
-  "nextIssue": "3469799",
+  "nextIssue": "3469810",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
       "current": {
-        "issue": "3469799",
+        "issue": "3469810",
         "combos": [
           "小双",
           "大单"
         ],
         "kill": "小单",
-        "confidence": 86,
-        "createdAt": "2026-08-15T07:20:06.248Z"
+        "confidence": 80,
+        "createdAt": "2026-08-15T08:00:49.146Z"
       },
       "records": [
         {
@@ -95,14 +95,14 @@
     "a2": {
       "name": "算法二｜短期结构",
       "current": {
-        "issue": "3469799",
+        "issue": "3469810",
         "combos": [
           "小双",
           "大单"
         ],
         "kill": "小单",
-        "confidence": 77,
-        "createdAt": "2026-08-15T07:20:06.248Z"
+        "confidence": 76,
+        "createdAt": "2026-08-15T08:00:49.147Z"
       },
       "records": [
         {
@@ -180,14 +180,14 @@
     "a3": {
       "name": "算法三｜长期稳定",
       "current": {
-        "issue": "3469799",
+        "issue": "3469810",
         "combos": [
           "大双",
           "小双"
         ],
         "kill": "大单",
-        "confidence": 57,
-        "createdAt": "2026-08-15T07:20:06.248Z"
+        "confidence": 58,
+        "createdAt": "2026-08-15T08:00:49.147Z"
       },
       "records": [
         {
@@ -323,6 +323,61 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469809",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469808",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469807",
+      "sum": 6,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469806",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469805",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469804",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469803",
+      "sum": 20,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469802",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469801",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469800",
+      "sum": 10,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469799",
+      "sum": 23,
+      "combo": "大单"
+    },
     {
       "issue": "3469798",
       "sum": 17,
@@ -762,61 +817,6 @@
       "issue": "3469711",
       "sum": 19,
       "combo": "大单"
-    },
-    {
-      "issue": "3469710",
-      "sum": 12,
-      "combo": "小双"
-    },
-    {
-      "issue": "3469709",
-      "sum": 11,
-      "combo": "小单"
-    },
-    {
-      "issue": "3469708",
-      "sum": 11,
-      "combo": "小单"
-    },
-    {
-      "issue": "3469707",
-      "sum": 23,
-      "combo": "大单"
-    },
-    {
-      "issue": "3469706",
-      "sum": 17,
-      "combo": "大单"
-    },
-    {
-      "issue": "3469705",
-      "sum": 5,
-      "combo": "小单"
-    },
-    {
-      "issue": "3469704",
-      "sum": 12,
-      "combo": "小双"
-    },
-    {
-      "issue": "3469703",
-      "sum": 17,
-      "combo": "大单"
-    },
-    {
-      "issue": "3469702",
-      "sum": 14,
-      "combo": "大双"
-    },
-    {
-      "issue": "3469701",
-      "sum": 12,
-      "combo": "小双"
-    },
-    {
-      "issue": "3469700",
-      "sum": 14,
-      "combo": "大双"
     }
   ]
 }
