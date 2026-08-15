@@ -1,56 +1,156 @@
 {
-  "updatedAt": null,
-  "latestDraw": null,
-  "nextIssue": null,
+  "updatedAt": "2026-08-15T00:17:27.369Z",
+  "latestDraw": {
+    "issue": "3469677",
+    "sum": 10,
+    "combo": "小双"
+  },
+  "nextIssue": "3469678",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
-      "current": null,
-      "records": []
+      "current": {
+        "issue": "3469678",
+        "combos": [
+          "大双",
+          "大单"
+        ],
+        "kill": "小双",
+        "confidence": 70,
+        "createdAt": "2026-08-15T00:16:31.922Z"
+      },
+      "records": [
+        {
+          "issue": "3469677",
+          "combos": [
+            "大双",
+            "大单"
+          ],
+          "kill": "小双",
+          "confidence": 75,
+          "actualCombo": "小双",
+          "actualSum": 10,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:16:31.922Z"
+        }
+      ]
     },
     "a2": {
       "name": "算法二｜短期结构",
-      "current": null,
-      "records": []
+      "current": {
+        "issue": "3469678",
+        "combos": [
+          "大双",
+          "大单"
+        ],
+        "kill": "小双",
+        "confidence": 67,
+        "createdAt": "2026-08-15T00:16:31.922Z"
+      },
+      "records": [
+        {
+          "issue": "3469677",
+          "combos": [
+            "大单",
+            "大双"
+          ],
+          "kill": "小双",
+          "confidence": 69,
+          "actualCombo": "小双",
+          "actualSum": 10,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:16:31.922Z"
+        }
+      ]
     },
     "a3": {
       "name": "算法三｜长期稳定",
-      "current": null,
-      "records": []
+      "current": {
+        "issue": "3469678",
+        "combos": [
+          "大双",
+          "小双"
+        ],
+        "kill": "小单",
+        "confidence": 58,
+        "createdAt": "2026-08-15T00:16:31.922Z"
+      },
+      "records": [
+        {
+          "issue": "3469677",
+          "combos": [
+            "大双",
+            "小双"
+          ],
+          "kill": "小单",
+          "confidence": 58,
+          "actualCombo": "小双",
+          "actualSum": 10,
+          "comboHit": true,
+          "killSuccess": true,
+          "settledAt": "2026-08-15T00:16:31.922Z"
+        }
+      ]
     }
   },
   "simulations": {
     "a1": {
-      "points": 300,
+      "points": 290,
       "round": 1,
-      "step": 1,
-      "stake": 5,
+      "step": 2,
+      "stake": 10,
       "success": 0,
       "fail": 0,
-      "net": 0,
-      "pending": null,
+      "net": -10,
+      "pending": {
+        "issue": "3469678",
+        "combos": [
+          "大双",
+          "大单"
+        ],
+        "confidence": 70,
+        "createdAt": "2026-08-15T00:16:31.922Z"
+      },
       "history": []
     },
     "a2": {
-      "points": 300,
+      "points": 290,
       "round": 1,
-      "step": 1,
-      "stake": 5,
+      "step": 2,
+      "stake": 10,
       "success": 0,
       "fail": 0,
-      "net": 0,
-      "pending": null,
+      "net": -10,
+      "pending": {
+        "issue": "3469678",
+        "combos": [
+          "大双",
+          "大单"
+        ],
+        "confidence": 67,
+        "createdAt": "2026-08-15T00:16:31.922Z"
+      },
       "history": []
     },
     "a3": {
-      "points": 300,
+      "points": 305,
       "round": 1,
       "step": 1,
       "stake": 5,
       "success": 0,
       "fail": 0,
-      "net": 0,
-      "pending": null,
+      "net": 5,
+      "pending": {
+        "issue": "3469678",
+        "combos": [
+          "大双",
+          "小双"
+        ],
+        "confidence": 58,
+        "createdAt": "2026-08-15T00:16:31.922Z"
+      },
       "history": []
     }
   }
