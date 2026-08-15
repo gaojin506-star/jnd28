@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-15T12:04:22.696Z",
+  "updatedAt": "2026-08-15T12:05:20.527Z",
   "latestDraw": {
-    "issue": "3469869",
-    "abc": "7+2+9",
+    "issue": "3469870",
+    "abc": "9+5+4",
     "sum": 18,
     "size": "大",
     "oe": "双",
     "combo": "大双",
     "date": "2026-08-15",
-    "time": "20:01:00"
+    "time": "20:04:30"
   },
-  "nextIssue": "3469870",
+  "nextIssue": "3469871",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469870",
+      "abc": "9+5+4",
+      "sum": 18,
+      "size": "大",
+      "oe": "双",
+      "combo": "大双",
+      "date": "2026-08-15",
+      "time": "20:04:30"
+    },
     {
       "issue": "3469869",
       "abc": "7+2+9",
@@ -1349,16 +1359,6 @@
       "combo": "小单",
       "date": "2026-08-15",
       "time": "13:48:30"
-    },
-    {
-      "issue": "3469771",
-      "abc": "3+4+0",
-      "sum": 7,
-      "size": "小",
-      "oe": "单",
-      "combo": "小单",
-      "date": "2026-08-15",
-      "time": "13:45:00"
     }
   ],
   "v3": {
@@ -1469,26 +1469,26 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3469870",
+    "issue": "3469871",
     "picks": [
       {
-        "name": "小双",
-        "confidence": 61
+        "name": "大双",
+        "confidence": 60
       },
       {
-        "name": "大双",
+        "name": "小双",
         "confidence": 58
       }
     ],
-    "reason": "近8期回补"
+    "reason": "近8期回补；大双连开2期修正"
   },
   "consensus4": {
-    "issue": "3469870",
+    "issue": "3469871",
     "codes": [
-      10,
-      14,
-      15,
-      16
+      4,
+      8,
+      9,
+      18
     ]
   },
   "sources": [
@@ -1889,10 +1889,35 @@
         15,
         16
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-15T12:01:29.069Z",
+      "actualSum": 18,
+      "actualCombo": "大双",
+      "actualABC": "9+5+4",
+      "autoResult": "对",
+      "codeResult": "错",
+      "settledAt": "2026-08-15T12:05:19.667Z"
+    },
+    "3469871": {
+      "issue": "3469871",
+      "autoPicks": [
+        "大双",
+        "小双"
+      ],
+      "autoConfidence": [
+        60,
+        58
+      ],
+      "codes": [
+        4,
+        8,
+        9,
+        18
+      ],
       "status": "待",
-      "createdAt": "2026-08-15T12:01:29.069Z"
+      "createdAt": "2026-08-15T12:05:20.527Z"
     }
   },
-  "countdown": "00:10",
-  "countdownEndsAt": 1786795471829
+  "countdown": "02:42",
+  "countdownEndsAt": 1786795681667
 }
