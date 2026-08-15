@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-08-15T08:22:21.209Z",
+  "updatedAt": "2026-08-15T08:23:19.053Z",
   "latestDraw": {
-    "issue": "3469815",
-    "sum": 11,
+    "issue": "3469816",
+    "sum": 13,
     "size": "小",
     "oe": "单",
     "combo": "小单"
   },
-  "nextIssue": "3469816",
+  "nextIssue": "3469817",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -367,6 +367,13 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469816",
+      "sum": 13,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单"
+    },
     {
       "issue": "3469815",
       "sum": 11,
@@ -1052,13 +1059,6 @@
       "size": "小",
       "oe": "单",
       "combo": "小单"
-    },
-    {
-      "issue": "3469717",
-      "sum": 12,
-      "size": "小",
-      "oe": "双",
-      "combo": "小双"
     }
   ],
   "v3": {
@@ -1071,7 +1071,7 @@
           19,
           23
         ],
-        "judgement": "待",
+        "judgement": "错",
         "createdAt": "2026-08-15T08:20:24.685Z",
         "sources": [
           {
@@ -1082,63 +1082,93 @@
             "effectiveWeight": 0.799,
             "sync": "同步"
           }
+        ],
+        "actualSum": 13,
+        "actualCombo": "小单",
+        "judgedAt": "2026-08-15T08:23:18.197Z",
+        "statsCounted": true
+      },
+      "3469817": {
+        "issue": "3469817",
+        "codes": [
+          10,
+          12,
+          14,
+          15
+        ],
+        "judgement": "待",
+        "createdAt": "2026-08-15T08:23:19.053Z",
+        "sources": [
+          {
+            "id": "canada28org",
+            "name": "Canada28.org",
+            "predIssue": "3469817",
+            "raw": "杀小边",
+            "effectiveWeight": 0.763,
+            "sync": "同步"
+          }
         ]
       }
     },
-    "sourceStats": {}
+    "sourceStats": {
+      "canada28org": {
+        "total": 1,
+        "hit": 0
+      }
+    }
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3469816",
+    "issue": "3469817",
     "picks": [
       {
         "name": "小双",
         "confidence": 61
       },
       {
-        "name": "大单",
-        "confidence": 55
+        "name": "大双",
+        "confidence": 56
       }
     ],
-    "reason": "近8期回补；小单连开2期修正；近期偏小"
+    "reason": "近8期回补；小单连开3期修正；近期偏小"
   },
   "consensus4": {
-    "issue": "3469816",
+    "issue": "3469817",
     "codes": [
-      8,
-      18,
-      19,
-      23
+      10,
+      12,
+      14,
+      15
     ],
     "score": [
-      0.342,
-      0.3495,
-      0.3607,
-      0.3756,
-      0.341,
-      0.4167,
-      0.4673,
-      0.4727,
-      0.5437,
-      0.4457,
-      0.0204,
-      -0.2668,
-      -0.0848,
-      -0.2314,
-      -0.1594,
-      -0.0834,
-      -0.2337,
-      -0.2114,
-      0.5436,
-      0.5639,
-      0.4914,
-      0.5004,
-      0.4167,
-      0.5095,
-      0.3756,
-      0.3607,
-      0.3495,
-      0.342
+      -0.4119,
+      -0.4045,
+      -0.3933,
+      -0.3783,
+      -0.4,
+      -0.3373,
+      -0.2737,
+      -0.2813,
+      -0.1973,
+      -0.2953,
+      0.7397,
+      0.523,
+      0.705,
+      0.5901,
+      0.6304,
+      0.7064,
+      0.5561,
+      0.5784,
+      0.537,
+      0.5573,
+      0.4977,
+      0.4938,
+      0.4101,
+      0.5029,
+      0.369,
+      0.3541,
+      0.3429,
+      0.3354
     ],
     "usedCount": 1,
     "totalSources": 4
@@ -1162,18 +1192,18 @@
       "type": "排除型",
       "status": "同步",
       "syncLabel": "同步",
-      "predIssue": "3469816",
-      "raw": "杀中",
+      "predIssue": "3469817",
+      "raw": "杀小边",
       "error": null,
-      "effectiveWeight": 0.799,
-      "accuracy": 50
+      "effectiveWeight": 0.763,
+      "accuracy": 40
     },
     {
       "id": "pc28ai",
       "name": "PC28.AI",
       "type": "动态AI",
       "status": "剔除",
-      "syncLabel": "差-47464期",
+      "syncLabel": "差-47465期",
       "predIssue": "3422352",
       "raw": "大单",
       "error": null,
@@ -1196,18 +1226,18 @@
   "rates": {
     "r10": {
       "hit": 0,
-      "total": 0,
-      "pct": null
+      "total": 1,
+      "pct": 0
     },
     "r30": {
       "hit": 0,
-      "total": 0,
-      "pct": null
+      "total": 1,
+      "pct": 0
     },
     "r100": {
       "hit": 0,
-      "total": 0,
-      "pct": null
+      "total": 1,
+      "pct": 0
     }
   }
 }
