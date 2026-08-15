@@ -1,25 +1,53 @@
 {
-  "updatedAt": "2026-08-15T00:17:27.369Z",
+  "updatedAt": "2026-08-15T00:25:28.141Z",
   "latestDraw": {
-    "issue": "3469677",
-    "sum": 10,
-    "combo": "小双"
+    "issue": "3469679",
+    "sum": 14,
+    "combo": "大双"
   },
-  "nextIssue": "3469678",
+  "nextIssue": "3469680",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
       "current": {
-        "issue": "3469678",
+        "issue": "3469680",
         "combos": [
           "大双",
           "大单"
         ],
         "kill": "小双",
         "confidence": 70,
-        "createdAt": "2026-08-15T00:16:31.922Z"
+        "createdAt": "2026-08-15T00:23:37.306Z"
       },
       "records": [
+        {
+          "issue": "3469679",
+          "combos": [
+            "大双",
+            "大单"
+          ],
+          "kill": "小单",
+          "confidence": 65,
+          "actualCombo": "大双",
+          "actualSum": 14,
+          "comboHit": true,
+          "killSuccess": true,
+          "settledAt": "2026-08-15T00:23:37.306Z"
+        },
+        {
+          "issue": "3469678",
+          "combos": [
+            "大双",
+            "大单"
+          ],
+          "kill": "小双",
+          "confidence": 70,
+          "actualCombo": "小双",
+          "actualSum": 12,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:21:46.394Z"
+        },
         {
           "issue": "3469677",
           "combos": [
@@ -39,16 +67,44 @@
     "a2": {
       "name": "算法二｜短期结构",
       "current": {
-        "issue": "3469678",
+        "issue": "3469680",
         "combos": [
           "大双",
           "大单"
         ],
         "kill": "小双",
-        "confidence": 67,
-        "createdAt": "2026-08-15T00:16:31.922Z"
+        "confidence": 66,
+        "createdAt": "2026-08-15T00:23:37.306Z"
       },
       "records": [
+        {
+          "issue": "3469679",
+          "combos": [
+            "大双",
+            "大单"
+          ],
+          "kill": "小双",
+          "confidence": 64,
+          "actualCombo": "大双",
+          "actualSum": 14,
+          "comboHit": true,
+          "killSuccess": true,
+          "settledAt": "2026-08-15T00:23:37.306Z"
+        },
+        {
+          "issue": "3469678",
+          "combos": [
+            "大双",
+            "大单"
+          ],
+          "kill": "小双",
+          "confidence": 67,
+          "actualCombo": "小双",
+          "actualSum": 12,
+          "comboHit": false,
+          "killSuccess": false,
+          "settledAt": "2026-08-15T00:21:46.395Z"
+        },
         {
           "issue": "3469677",
           "combos": [
@@ -68,16 +124,44 @@
     "a3": {
       "name": "算法三｜长期稳定",
       "current": {
-        "issue": "3469678",
+        "issue": "3469680",
         "combos": [
           "大双",
           "小双"
         ],
         "kill": "小单",
-        "confidence": 58,
-        "createdAt": "2026-08-15T00:16:31.922Z"
+        "confidence": 57,
+        "createdAt": "2026-08-15T00:23:37.306Z"
       },
       "records": [
+        {
+          "issue": "3469679",
+          "combos": [
+            "大双",
+            "小双"
+          ],
+          "kill": "小单",
+          "confidence": 57,
+          "actualCombo": "大双",
+          "actualSum": 14,
+          "comboHit": true,
+          "killSuccess": true,
+          "settledAt": "2026-08-15T00:23:37.306Z"
+        },
+        {
+          "issue": "3469678",
+          "combos": [
+            "大双",
+            "小双"
+          ],
+          "kill": "小单",
+          "confidence": 58,
+          "actualCombo": "小双",
+          "actualSum": 12,
+          "comboHit": true,
+          "killSuccess": true,
+          "settledAt": "2026-08-15T00:21:46.395Z"
+        },
         {
           "issue": "3469677",
           "combos": [
@@ -99,59 +183,556 @@
     "a1": {
       "points": 290,
       "round": 1,
-      "step": 2,
-      "stake": 10,
+      "step": 1,
+      "stake": 5,
       "success": 0,
       "fail": 0,
       "net": -10,
       "pending": {
-        "issue": "3469678",
+        "issue": "3469680",
         "combos": [
           "大双",
           "大单"
         ],
         "confidence": 70,
-        "createdAt": "2026-08-15T00:16:31.922Z"
+        "createdAt": "2026-08-15T00:23:37.306Z"
       },
       "history": []
     },
     "a2": {
       "points": 290,
       "round": 1,
-      "step": 2,
-      "stake": 10,
+      "step": 1,
+      "stake": 5,
       "success": 0,
       "fail": 0,
       "net": -10,
       "pending": {
-        "issue": "3469678",
+        "issue": "3469680",
         "combos": [
           "大双",
           "大单"
         ],
-        "confidence": 67,
-        "createdAt": "2026-08-15T00:16:31.922Z"
+        "confidence": 66,
+        "createdAt": "2026-08-15T00:23:37.306Z"
       },
       "history": []
     },
     "a3": {
-      "points": 305,
+      "points": 315,
       "round": 1,
       "step": 1,
       "stake": 5,
       "success": 0,
       "fail": 0,
-      "net": 5,
+      "net": 15,
       "pending": {
-        "issue": "3469678",
+        "issue": "3469680",
         "combos": [
           "大双",
           "小双"
         ],
-        "confidence": 58,
-        "createdAt": "2026-08-15T00:16:31.922Z"
+        "confidence": 57,
+        "createdAt": "2026-08-15T00:23:37.306Z"
       },
       "history": []
     }
-  }
+  },
+  "drawHistory": [
+    {
+      "issue": "3469679",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469678",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469677",
+      "sum": 10,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469676",
+      "sum": 20,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469675",
+      "sum": 19,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469674",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469673",
+      "sum": 19,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469672",
+      "sum": 23,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469671",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469670",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469669",
+      "sum": 9,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469668",
+      "sum": 25,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469667",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469666",
+      "sum": 18,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469665",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469664",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469663",
+      "sum": 7,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469662",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469661",
+      "sum": 19,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469660",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469659",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469658",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469657",
+      "sum": 19,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469656",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469655",
+      "sum": 20,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469654",
+      "sum": 21,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469653",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469652",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469651",
+      "sum": 23,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469650",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469649",
+      "sum": 9,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469648",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469647",
+      "sum": 4,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469646",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469645",
+      "sum": 4,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469644",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469643",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469642",
+      "sum": 6,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469641",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469640",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469639",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469638",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469637",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469636",
+      "sum": 18,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469635",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469634",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469633",
+      "sum": 20,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469632",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469631",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469630",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469629",
+      "sum": 18,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469628",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469627",
+      "sum": 21,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469626",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469625",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469624",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469623",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469622",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469621",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469620",
+      "sum": 10,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469619",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469618",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469617",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469616",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469615",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469614",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469613",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469612",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469611",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469610",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469609",
+      "sum": 19,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469608",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469607",
+      "sum": 10,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469606",
+      "sum": 10,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469605",
+      "sum": 9,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469604",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469603",
+      "sum": 16,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469602",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469601",
+      "sum": 8,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469600",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469599",
+      "sum": 24,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469598",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469597",
+      "sum": 15,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469596",
+      "sum": 13,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469595",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469594",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469593",
+      "sum": 17,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469592",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469591",
+      "sum": 21,
+      "combo": "大单"
+    },
+    {
+      "issue": "3469590",
+      "sum": 4,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469589",
+      "sum": 11,
+      "combo": "小单"
+    },
+    {
+      "issue": "3469588",
+      "sum": 6,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469587",
+      "sum": 10,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469586",
+      "sum": 12,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469585",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469584",
+      "sum": 4,
+      "combo": "小双"
+    },
+    {
+      "issue": "3469583",
+      "sum": 20,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469582",
+      "sum": 14,
+      "combo": "大双"
+    },
+    {
+      "issue": "3469581",
+      "sum": 6,
+      "combo": "小双"
+    }
+  ]
 }
