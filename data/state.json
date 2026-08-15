@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-15T08:41:54.798Z",
+  "updatedAt": "2026-08-15T08:42:56.964Z",
   "latestDraw": {
     "issue": "3469821",
     "abc": "1+0+3",
@@ -1485,10 +1485,10 @@
   "consensus4": {
     "issue": "3469822",
     "codes": [
-      8,
-      18,
-      19,
-      20
+      12,
+      13,
+      14,
+      17
     ]
   },
   "sources": [
@@ -1654,6 +1654,6 @@
       "createdAt": "2026-08-15T08:40:54.576Z"
     }
   },
-  "countdown": "01:41",
-  "countdownEndsAt": 1786783412580
+  "countdown": "00:41",
+  "countdownEndsAt": 1786783412459
 }
