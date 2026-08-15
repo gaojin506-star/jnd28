@@ -10,22 +10,19 @@
 </head>
 <body>
 <main class="app">
-<header class="topbar"><div class="brand"><div class="logo">星</div><div><h1>28 自动分析</h1><p>自动开奖 · 自动分析</p></div></div><div class="online"><i></i><span id="onlineText">运行中</span></div></header>
+<header class="topbar">
+  <div class="brand"><div class="logo">星</div><div><h1>28 自动分析</h1><p>自动开奖 · 自动预测 · 自动回测</p></div></div>
+  <div class="online"><i></i><span id="onlineText">运行中</span></div>
+</header>
 
-<section class="card">
-  <div class="title-row"><div><h2>最新开奖</h2><p id="issueText">正在获取最新结果</p></div><button id="syncBtn" class="mini">刷新</button></div>
+<section class="card countdown-card">
+  <div class="title-row"><div><h2>开奖倒计时</h2><p id="issueText">正在获取最新开奖</p></div><button id="syncBtn" class="mini">刷新</button></div>
   <div class="countdown"><span>距离下期开奖</span><strong id="countdown">--:--</strong></div>
-  <div class="four-grid">
-    <div class="metric"><span>和值</span><strong id="sum">--</strong></div>
-    <div class="metric"><span>大小</span><strong id="size">--</strong></div>
-    <div class="metric"><span>单双</span><strong id="oddEven">--</strong></div>
-    <div class="metric"><span>ABC</span><strong id="abc">--</strong></div>
-  </div>
   <div id="syncHint" class="hint">自动同步中</div>
 </section>
 
 <section class="card">
-  <div class="title-row"><div><h2>下期自动参考</h2><p id="nextIssueText">等待分析</p></div><span id="modelState" class="state">自动</span></div>
+  <div class="title-row"><div><h2>自动分析</h2><p id="nextIssueText">等待分析</p></div><span class="state">自动</span></div>
   <div class="predictions">
     <div class="prediction main-pick"><small>参考一</small><strong id="pick1">--</strong><span id="score1">参考度 --</span></div>
     <div class="prediction"><small>参考二</small><strong id="pick2">--</strong><span id="score2">参考度 --</span></div>
@@ -34,17 +31,19 @@
 </section>
 
 <section class="card">
-  <div class="title-row"><div><h2>下期4码</h2><p>自动综合筛选4个和值</p></div><span class="state">自动</span></div>
+  <div class="title-row"><div><h2>自动4码</h2><p id="fourIssueText">等待分析</p></div><span class="state">自动</span></div>
   <div id="fourCodes" class="codes"><b>--</b><b>--</b><b>--</b><b>--</b></div>
 </section>
 
-<section class="card">
-  <div class="title-row"><div><h2>历史记录</h2><p>实际结果与当期自动参考、4码直接对比</p></div><span id="lastSync" class="mini">未同步</span></div>
-  <div class="history-head"><span>期号/实际</span><span>自动参考</span><span>4码</span></div>
+<section class="card history-card">
+  <div class="title-row"><div><h2>历史记录</h2><p>每期开奖后自动对比并保存</p></div><span id="lastSync" class="mini">未同步</span></div>
+  <div class="history-head">
+    <span>实际开奖结果</span><span>自动参考</span><span>对/错</span><span>4码</span><span>对/错</span>
+  </div>
   <div id="historyList" class="history-list"><div class="empty">暂无回测记录</div></div>
 </section>
 
-<footer>自动参考与4码仅用于数据观察，不保证未来开奖结果。</footer>
+<footer>预测仅用于数据观察与回测，不保证未来开奖结果。</footer>
 </main>
 <script src="app.js"></script>
 </body>
