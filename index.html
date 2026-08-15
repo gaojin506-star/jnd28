@@ -18,7 +18,7 @@
 <section class="card countdown-card">
   <div class="title-row"><div><h2>开奖倒计时</h2><p id="issueText">正在获取最新开奖</p></div><button id="syncBtn" class="mini">刷新</button></div>
   <div class="countdown"><span>距离下期开奖</span><strong id="countdown">--:--</strong></div>
-  <div id="syncHint" class="hint">自动同步中</div>
+  <div id="syncHint" class="hint">正在检测最新数据</div>
 </section>
 
 <section class="card">
@@ -36,11 +36,10 @@
 </section>
 
 <section class="card history-card">
-  <div class="title-row"><div><h2>历史记录</h2><p>每期开奖后自动对比并保存</p></div><span id="lastSync" class="mini">未同步</span></div>
-  <div class="history-head">
-    <span>实际开奖结果</span><span>自动参考</span><span>对/错</span><span>4码</span><span>对/错</span>
-  </div>
+  <div class="title-row"><div><h2>历史记录</h2><p>默认最近10期 · 可展开更多</p></div><span id="lastSync" class="mini">未同步</span></div>
+  <div class="history-head"><span>实际开奖结果</span><span>自动参考</span><span>对/错</span><span>4码</span><span>对/错</span></div>
   <div id="historyList" class="history-list"><div class="empty">暂无回测记录</div></div>
+  <button id="moreBtn" class="more-btn" hidden>展开更多记录</button>
 </section>
 
 <footer>预测仅用于数据观察与回测，不保证未来开奖结果。</footer>
