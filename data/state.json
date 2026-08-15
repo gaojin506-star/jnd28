@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-15T13:24:41.409Z",
+  "updatedAt": "2026-08-15T13:25:34.379Z",
   "latestDraw": {
-    "issue": "3469892",
-    "abc": "6+3+5",
-    "sum": 14,
-    "size": "大",
+    "issue": "3469893",
+    "abc": "3+4+1",
+    "sum": 8,
+    "size": "小",
     "oe": "双",
-    "combo": "大双",
+    "combo": "小双",
     "date": "2026-08-15",
-    "time": "21:21:30"
+    "time": "21:25:00"
   },
-  "nextIssue": "3469893",
+  "nextIssue": "3469894",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469893",
+      "abc": "3+4+1",
+      "sum": 8,
+      "size": "小",
+      "oe": "双",
+      "combo": "小双",
+      "date": "2026-08-15",
+      "time": "21:25:00"
+    },
     {
       "issue": "3469892",
       "abc": "6+3+5",
@@ -1349,16 +1359,6 @@
       "combo": "大单",
       "date": "2026-08-15",
       "time": "15:09:00"
-    },
-    {
-      "issue": "3469794",
-      "abc": "1+2+1",
-      "sum": 4,
-      "size": "小",
-      "oe": "双",
-      "combo": "小双",
-      "date": "2026-08-15",
-      "time": "15:05:30"
     }
   ],
   "v3": {
@@ -1469,27 +1469,18 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3469893",
+    "issue": "3469894",
     "picks": [
       {
         "name": "大双",
-        "confidence": 60
+        "confidence": 59
       },
       {
         "name": "小单",
-        "confidence": 57
+        "confidence": 56
       }
     ],
     "reason": "近8期回补"
-  },
-  "consensus4": {
-    "issue": "3469893",
-    "codes": [
-      8,
-      9,
-      18,
-      19
-    ]
   },
   "sources": [
     {
@@ -1569,19 +1560,12 @@
         63,
         56
       ],
-      "codes": [
-        6,
-        18,
-        20,
-        23
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T08:32:45.401Z",
       "actualSum": 9,
       "actualCombo": "小单",
       "actualABC": "6+0+3",
       "autoResult": "对",
-      "codeResult": "错",
       "settledAt": "2026-08-15T08:33:41.888Z"
     },
     "3469820": {
@@ -1594,19 +1578,12 @@
         64,
         58
       ],
-      "codes": [
-        6,
-        8,
-        18,
-        20
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T08:33:42.904Z",
       "actualSum": 15,
       "actualCombo": "大单",
       "actualABC": "5+5+5",
       "autoResult": "错",
-      "codeResult": "错",
       "settledAt": "2026-08-15T08:36:36.227Z"
     },
     "3469821": {
@@ -1619,19 +1596,12 @@
         63,
         58
       ],
-      "codes": [
-        12,
-        13,
-        14,
-        17
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T08:36:41.730Z",
       "actualSum": 4,
       "actualCombo": "小双",
       "actualABC": "1+0+3",
       "autoResult": "对",
-      "codeResult": "错",
       "settledAt": "2026-08-15T08:40:53.492Z"
     },
     "3469822": {
@@ -1643,12 +1613,6 @@
       "autoConfidence": [
         65,
         58
-      ],
-      "codes": [
-        8,
-        18,
-        19,
-        20
       ],
       "status": "待",
       "createdAt": "2026-08-15T08:40:54.576Z"
@@ -1663,19 +1627,12 @@
         65,
         59
       ],
-      "codes": [
-        9,
-        18,
-        19,
-        20
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T08:50:09.507Z",
       "actualSum": 18,
       "actualCombo": "大双",
       "actualABC": "9+6+3",
       "autoResult": "错",
-      "codeResult": "对",
       "settledAt": "2026-08-15T08:51:06.770Z"
     },
     "3469825": {
@@ -1687,12 +1644,6 @@
       "autoConfidence": [
         63,
         58
-      ],
-      "codes": [
-        8,
-        9,
-        19,
-        20
       ],
       "status": "待",
       "createdAt": "2026-08-15T08:51:11.543Z"
@@ -1707,19 +1658,12 @@
         61,
         58
       ],
-      "codes": [
-        6,
-        8,
-        9,
-        20
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T09:03:12.275Z",
       "actualSum": 11,
       "actualCombo": "小单",
       "actualABC": "3+1+7",
       "autoResult": "对",
-      "codeResult": "错",
       "settledAt": "2026-08-15T09:05:08.919Z"
     },
     "3469829": {
@@ -1731,12 +1675,6 @@
       "autoConfidence": [
         63,
         57
-      ],
-      "codes": [
-        12,
-        13,
-        14,
-        16
       ],
       "status": "待",
       "createdAt": "2026-08-15T09:05:14.013Z"
@@ -1751,19 +1689,12 @@
         62,
         57
       ],
-      "codes": [
-        8,
-        9,
-        18,
-        19
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T09:54:39.859Z",
       "actualSum": 8,
       "actualCombo": "小双",
       "actualABC": "1+7+0",
       "autoResult": "对",
-      "codeResult": "对",
       "settledAt": "2026-08-15T09:57:31.854Z"
     },
     "3469844": {
@@ -1775,12 +1706,6 @@
       "autoConfidence": [
         64,
         56
-      ],
-      "codes": [
-        12,
-        13,
-        15,
-        18
       ],
       "status": "待",
       "createdAt": "2026-08-15T09:57:32.854Z"
@@ -1795,19 +1720,12 @@
         62,
         55
       ],
-      "codes": [
-        11,
-        12,
-        14,
-        15
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T10:50:56.412Z",
       "actualSum": 10,
       "actualCombo": "小双",
       "actualABC": "2+4+4",
       "autoResult": "对",
-      "codeResult": "错",
       "settledAt": "2026-08-15T10:53:52.019Z"
     },
     "3469860": {
@@ -1819,12 +1737,6 @@
       "autoConfidence": [
         63,
         56
-      ],
-      "codes": [
-        10,
-        12,
-        14,
-        15
       ],
       "status": "待",
       "createdAt": "2026-08-15T10:53:54.350Z"
@@ -1839,19 +1751,12 @@
         63,
         56
       ],
-      "codes": [
-        7,
-        8,
-        9,
-        19
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T11:39:42.019Z",
       "actualSum": 13,
       "actualCombo": "小单",
       "actualABC": "1+6+6",
       "autoResult": "错",
-      "codeResult": "错",
       "settledAt": "2026-08-15T11:40:38.844Z"
     },
     "3469864": {
@@ -1863,12 +1768,6 @@
       "autoConfidence": [
         62,
         57
-      ],
-      "codes": [
-        10,
-        12,
-        14,
-        16
       ],
       "status": "待",
       "createdAt": "2026-08-15T11:40:39.769Z"
@@ -1883,19 +1782,12 @@
         61,
         58
       ],
-      "codes": [
-        10,
-        14,
-        15,
-        16
-      ],
       "status": "已开奖",
       "createdAt": "2026-08-15T12:01:29.069Z",
       "actualSum": 18,
       "actualCombo": "大双",
       "actualABC": "9+5+4",
       "autoResult": "对",
-      "codeResult": "错",
       "settledAt": "2026-08-15T12:05:19.667Z"
     },
     "3469871": {
@@ -1907,12 +1799,6 @@
       "autoConfidence": [
         60,
         58
-      ],
-      "codes": [
-        4,
-        8,
-        9,
-        18
       ],
       "status": "待",
       "createdAt": "2026-08-15T12:05:20.527Z"
@@ -1927,16 +1813,28 @@
         60,
         57
       ],
-      "codes": [
-        8,
-        9,
-        18,
-        19
+      "status": "已开奖",
+      "createdAt": "2026-08-15T13:24:41.409Z",
+      "actualSum": 8,
+      "actualCombo": "小双",
+      "actualABC": "3+4+1",
+      "autoResult": "错",
+      "settledAt": "2026-08-15T13:25:34.378Z"
+    },
+    "3469894": {
+      "issue": "3469894",
+      "autoPicks": [
+        "大双",
+        "小单"
+      ],
+      "autoConfidence": [
+        59,
+        56
       ],
       "status": "待",
-      "createdAt": "2026-08-15T13:24:41.409Z"
+      "createdAt": "2026-08-15T13:25:34.379Z"
     }
   },
-  "countdown": "00:21",
-  "countdownEndsAt": 1786800301509
+  "countdown": "02:58",
+  "countdownEndsAt": 1786800512378
 }
