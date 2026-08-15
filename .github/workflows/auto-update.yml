@@ -1,7 +1,13 @@
-name: Auto update predictions
+name: Auto update V3 predictions
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/update.mjs"
+      - "index.html"
+      - ".github/workflows/auto-update.yml"
   schedule:
     - cron: "*/5 * * * *"
 
@@ -37,7 +43,7 @@ jobs:
             POLL_LOOPS=1 POLL_INTERVAL_MS=0 node scripts/update.mjs
             git add data/state.json
             if ! git diff --cached --quiet; then
-              git commit -m "Auto update predictions"
+              git commit -m "Auto update V3 predictions"
               git pull --rebase origin main
               git push
             fi
