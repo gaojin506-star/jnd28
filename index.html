@@ -1,62 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#071018"><title>加拿大28 · V3 全网交叉4码</title>
-<style>
-:root{--bg:#071018;--card:#0d1924;--line:#203746;--text:#eef4f7;--muted:#8196a6;--gold:#f5ca72;--gold2:#ffe6ae;--green:#55dc96;--red:#ff8181;--orange:#ffb56a}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:radial-gradient(circle at 95% 0%,rgba(190,126,35,.16),transparent 25%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif}
-.app{width:min(760px,100%);margin:auto;padding:14px 10px 34px}.top{display:flex;align-items:center;justify-content:space-between;padding:6px 2px 15px}.brand{display:flex;align-items:center;gap:10px}.logo{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe7ae,#b87a24);color:#281a05;font-size:24px;font-weight:900}h1{font-size:18px;margin:0 0 3px}.sub{font-size:10px;color:var(--muted)}
-.net{font-size:10px;color:#9fb2c0;border:1px solid #213746;padding:7px 9px;border-radius:999px;background:#0a1822}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;background:var(--orange)}.dot.ok{background:var(--green)}.dot.err{background:var(--red)}
-.card{margin-bottom:12px;padding:14px;border-radius:18px;background:linear-gradient(180deg,rgba(15,29,41,.98),rgba(8,19,28,.98));border:1px solid rgba(255,255,255,.065)}
-.row{display:flex;justify-content:space-between;align-items:center;gap:8px}.row h2{font-size:15px;margin:0 0 3px}.row p{font-size:10px;color:var(--muted);margin:0}.badge{font-size:10px;padding:7px 9px;border:1px solid #294356;border-radius:999px;color:#c4d2dc}
-.live{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px}.live div,.stat div{text-align:center;background:#07141d;border:1px solid rgba(255,255,255,.05);border-radius:11px;padding:10px 5px}.live span,.stat span{display:block;font-size:9px;color:var(--muted);margin-bottom:4px}.live b,.stat b{color:var(--gold2);font-size:14px}
-.result{text-align:center;margin-top:10px;padding:15px 7px;border-radius:15px;background:linear-gradient(180deg,rgba(245,202,114,.07),#07141d);border:1px solid rgba(245,202,114,.2)}.abc{font-size:25px;font-weight:900;color:var(--gold2);margin:7px}.tags{display:flex;justify-content:center;gap:6px}.pill{font-size:11px;padding:6px 9px;border-radius:999px;background:#102533;border:1px solid #294357}
-.refgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:11px}.ref{text-align:center;padding:15px 6px;border-radius:13px;background:#07141d;border:1px solid #213847}.ref small{color:var(--muted);font-size:9px}.ref strong{display:block;color:var(--gold2);font-size:26px;margin:5px}.ref span{font-size:9px;color:#8498a7}.reason{font-size:9px;color:#79909f;line-height:1.5;margin-top:8px}
-.four{display:flex;justify-content:center;gap:8px;margin:13px 0}.num{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe6aa,#c48730);color:#261902;font-weight:900;font-size:23px}.meta{text-align:center;font-size:9px;color:#8196a5}
-.rates{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px}.rate{text-align:center;background:#07141d;border-radius:11px;padding:10px 4px}.rate span{display:block;color:var(--muted);font-size:8px}.rate b{display:block;color:var(--gold2);font-size:18px;margin:3px}
-.sources{display:flex;flex-direction:column;gap:6px;margin-top:10px}.source{display:grid;grid-template-columns:1fr 54px 55px 58px;gap:5px;align-items:center;background:#07141d;border-radius:11px;padding:9px 8px;border:1px solid rgba(255,255,255,.05);font-size:9px}.source b{display:block;font-size:10px}.muted{color:#728998}.ok{color:var(--green)}.warn{color:var(--orange)}.bad{color:var(--red)}
-.trend{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:10px}.ball{text-align:center;background:#07141d;border-radius:10px;padding:7px 2px}.ball b{display:block;color:var(--gold2);font-size:14px}.ball span{font-size:8px;color:#8196a6}.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px}
-.history{display:flex;flex-direction:column;gap:6px;margin-top:10px}.hist{display:grid;grid-template-columns:64px 38px 1fr 38px 40px;gap:4px;align-items:center;background:#07141d;border-radius:10px;padding:8px 6px;font-size:9px}.hist .actual{color:var(--gold2);font-weight:900;font-size:13px}.j{text-align:center;font-weight:900}.empty{font-size:10px;color:#647b8b;padding:8px 0}.notice{font-size:9px;color:#607786;line-height:1.5;text-align:center;padding:8px}
-@media(max-width:390px){.app{padding-left:7px;padding-right:7px}.card{padding:12px}.num{width:49px;height:49px}.source{grid-template-columns:1fr 48px 48px 52px}.hist{grid-template-columns:58px 34px 1fr 35px}.hist .sc{display:none}}
-</style></head>
-<body><main class="app">
-<header class="top"><div class="brand"><div class="logo">星</div><div><h1>加拿大28 · V3 自动分析</h1><div class="sub">GitHub后台抓取 · 自动参考 · 全网交叉4码</div></div></div><div class="net"><i id="dot" class="dot"></i><span id="net">读取中</span></div></header>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#081018">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>星哥 · 28自动分析</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">星</div>
+        <div>
+          <h1>28 自动分析</h1>
+          <p>手机专用 · 自动同步</p>
+        </div>
+      </div>
+      <div class="online"><i></i>运行中</div>
+    </header>
 
-<section class="card"><div class="row"><div><h2>实时开奖</h2><p id="updated">读取后台数据</p></div><span class="badge" id="fresh">--</span></div><div class="live"><div><span>最新期号</span><b id="issue">--</b></div><div><span>下一期</span><b id="next">--</b></div><div><span>有效预测源</span><b id="valid">--</b></div></div><div class="result"><div class="abc" id="draw">--</div><div class="tags"><span class="pill" id="size">--</span><span class="pill" id="oe">--</span><span class="pill" id="combo">--</span></div></div></section>
+    <section class="card quick-card">
+      <div class="title-row">
+        <div>
+          <h2>最新一期</h2>
+          <p id="syncHint">自动同步最新开奖，也可手动录入</p>
+        </div>
+        <button id="syncBtn" class="mini">立即同步</button>
+      </div>
 
-<section class="card"><div class="row"><div><h2>自动参考</h2><p>历史频率 + 连开 + 回补</p></div><span class="badge" id="autoIssue">--</span></div><div class="refgrid"><div class="ref"><small>参考一</small><strong id="p1">--</strong><span id="c1">--</span></div><div class="ref"><small>参考二</small><strong id="p2">--</strong><span id="c2">--</span></div></div><div class="reason" id="reason">等待数据</div></section>
+      <div class="single-input-wrap">
+        <input
+          id="quickInput"
+          inputmode="numeric"
+          autocomplete="off"
+          placeholder="例如：9+6+0"
+          aria-label="输入最新一期ABC"
+        />
+        <button id="goBtn" class="go">分析</button>
+      </div>
 
-<section class="card"><div class="row"><div><h2>全网交叉4码</h2><p>同步校验 · 过期降权 · 超时跳过</p></div><span class="badge" id="fourIssue">--</span></div><div class="four" id="four"><div class="num">--</div><div class="num">--</div><div class="num">--</div><div class="num">--</div></div><div class="meta" id="fourMeta">等待数据</div><div class="rates"><div class="rate"><span>近10期</span><b id="r10">--</b><small id="r10n">0/0</small></div><div class="rate"><span>近30期</span><b id="r30">--</b><small id="r30n">0/0</small></div><div class="rate"><span>近100期</span><b id="r100">--</b><small id="r100n">0/0</small></div></div></section>
+      <div class="abc-hint">
+        支持格式：<b>960</b>、<b>9+6+0</b>、<b>9 6 0</b>、<b>9,6,0</b>
+      </div>
+      <div id="error" class="error"></div>
+    </section>
 
-<section class="card"><div class="row"><div><h2>预测源状态</h2><p>失败源自动跳过，不拖住页面</p></div></div><div id="sources" class="sources"><div class="empty">等待数据</div></div></section>
+    <section class="card current-card">
+      <div class="title-row">
+        <div>
+          <h2>本期结果</h2>
+          <p id="issueText">等待录入</p>
+        </div>
+        <span id="comboBadge" class="badge muted">--</span>
+      </div>
 
-<section class="card"><div class="row"><div><h2>近期走势</h2><p>最近18期</p></div></div><div id="trend" class="trend"></div><div class="stat"><div><span>记录</span><b id="total">0</b></div><div><span>大</span><b id="big">0</b></div><div><span>小</span><b id="small">0</b></div><div><span>单</span><b id="odd">0</b></div><div><span>双</span><b id="even">0</b></div><div><span>连开</span><b id="streak">--</b></div></div></section>
+      <div class="four-grid">
+        <div class="metric"><span>和值</span><strong id="sum">--</strong></div>
+        <div class="metric"><span>大小</span><strong id="size">--</strong></div>
+        <div class="metric"><span>单双</span><strong id="oddEven">--</strong></div>
+        <div class="metric"><span>ABC</span><strong id="abc">--</strong></div>
+      </div>
+    </section>
 
-<section class="card"><div class="row"><div><h2>4码历史回测</h2><p>只统计真正保存过的预测快照</p></div></div><div id="history" class="history"><div class="empty">暂无记录</div></div></section>
-<div class="notice">数据由 GitHub Actions 后台自动抓取并发布。第三方预测仅供数据观察与回测，不保证未来开奖结果。</div>
-</main>
-<script>
-const $=id=>document.getElementById(id);
-let lastGood=null;
-function ageText(ts){if(!ts)return'无数据';const sec=Math.max(0,Math.floor((Date.now()-new Date(ts))/1000));if(sec<60)return sec+'秒前';if(sec<3600)return Math.floor(sec/60)+'分钟前';return Math.floor(sec/3600)+'小时前'}
-function setRate(id,r){$(id).textContent=r?.pct==null?'--':r.pct+'%';$(id+'n').textContent=(r?.hit||0)+'/'+(r?.total||0)}
-function render(s){
- lastGood=s;
- const stale=Date.now()-new Date(s.updatedAt).getTime()>8*60*1000;
- $('dot').className='dot '+(stale?'err':'ok');$('net').textContent=stale?'后台更新延迟':'自动更新正常';$('fresh').textContent=ageText(s.updatedAt);$('updated').textContent='后台更新：'+ageText(s.updatedAt);
- const d=s.latestDraw||{};$('issue').textContent=d.issue||'--';$('next').textContent=s.nextIssue||'--';$('draw').textContent=Number.isFinite(d.sum)?'和值 '+d.sum:'--';$('size').textContent=d.size||'--';$('oe').textContent=d.oe||'--';$('combo').textContent=d.combo||'--';
- const ar=s.autoReference||{};$('autoIssue').textContent=ar.issue||'--';$('p1').textContent=ar.picks?.[0]?.name||'--';$('p2').textContent=ar.picks?.[1]?.name||'--';$('c1').textContent=ar.picks?.[0]?`参考度 ${ar.picks[0].confidence}%`:'--';$('c2').textContent=ar.picks?.[1]?`参考度 ${ar.picks[1].confidence}%`:'--';$('reason').textContent=ar.reason||'等待数据';
- const c=s.consensus4||{};$('fourIssue').textContent=c.issue||'--';$('valid').textContent=(c.usedCount??0)+'/'+(c.totalSources??0);$('four').innerHTML=(c.codes?.length?c.codes:['--','--','--','--']).map(n=>`<div class="num">${typeof n==='number'?String(n).padStart(2,'0'):n}</div>`).join('');$('fourMeta').textContent=`参与交叉 ${c.usedCount??0} 个有效源；失败/过期源不计分`;
- setRate('r10',s.rates?.r10);setRate('r30',s.rates?.r30);setRate('r100',s.rates?.r100);
- const src=s.sources||[];$('sources').innerHTML=src.length?src.map(x=>`<div class="source"><div><b>${x.name}</b><span class="muted">${x.type} · ${x.predIssue?('#'+x.predIssue):(x.error||'无数据')}</span></div><div class="${x.status==='同步'?'ok':x.status==='降权'?'warn':'bad'}">${x.syncLabel||x.status}</div><div>权重<br>${Number(x.effectiveWeight||0).toFixed(2)}</div><div>${x.raw||'--'}<br>${x.accuracy||50}%</div></div>`).join(''):'<div class="empty">暂无预测源数据</div>';
- const h=s.drawHistory||[];$('trend').innerHTML=h.slice(0,18).map(x=>`<div class="ball"><b>${x.sum}</b><span>${x.combo}</span></div>`).join('');$('total').textContent=h.length;$('big').textContent=h.filter(x=>x.size==='大'||x.combo?.startsWith('大')).length;$('small').textContent=h.filter(x=>x.size==='小'||x.combo?.startsWith('小')).length;$('odd').textContent=h.filter(x=>x.oe==='单'||x.combo?.endsWith('单')).length;$('even').textContent=h.filter(x=>x.oe==='双'||x.combo?.endsWith('双')).length;if(h.length){let n=0,c0=h[0].combo;for(const x of h){if(x.combo===c0)n++;else break}$('streak').textContent=c0+'×'+n}else $('streak').textContent='--';
- const snaps=Object.values(s.v3?.snapshots||{}).sort((a,b)=>Number(b.issue)-Number(a.issue)).slice(0,60);$('history').innerHTML=snaps.length?snaps.map(x=>`<div class="hist"><div>#${x.issue}</div><div class="actual">${x.actualSum??'--'}</div><div>${(x.codes||[]).map(n=>String(n).padStart(2,'0')).join(' · ')}</div><div class="j ${x.judgement==='对'?'ok':x.judgement==='错'?'bad':'warn'}">${x.judgement}</div><div class="sc muted">${(x.sources||[]).length}源</div></div>`).join(''):'<div class="empty">V3启用后会逐期积累回测</div>';
-}
-async function load(){
- try{
-  const r=await fetch('data/state.json?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const s=await r.json();render(s);
- }catch(e){$('dot').className='dot err';$('net').textContent=lastGood?'读取失败，显示缓存':'读取失败';$('updated').textContent='状态文件读取失败：'+e.message}
-}
-load();setInterval(load,15000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
-</script></body></html>
+    <section class="card prediction-card">
+      <div class="title-row">
+        <div>
+          <h2>下期自动参考</h2>
+          <p>根据最近历史走势自动更新</p>
+        </div>
+        <span id="modelState" class="model-state">待分析</span>
+      </div>
+
+      <div class="predictions">
+        <div class="prediction main-pick">
+          <small>参考一</small>
+          <strong id="pick1">--</strong>
+          <span id="score1">参考度 --</span>
+        </div>
+        <div class="prediction">
+          <small>参考二</small>
+          <strong id="pick2">--</strong>
+          <span id="score2">参考度 --</span>
+        </div>
+      </div>
+
+      <div class="reason-box">
+        <span>自动分析</span>
+        <p id="reason">录入开奖后，这里会显示近期频率、连开和回补等分析提示。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="title-row">
+        <div>
+          <h2>近期走势</h2>
+          <p>最近 12 期 · 自动更新</p>
+        </div>
+        <span class="mini" id="lastSync">未同步</span>
+      </div>
+      <div id="trend" class="trend empty">暂无数据</div>
+    </section>
+
+    <section class="card">
+      <div class="title-row">
+        <div>
+          <h2>自动统计</h2>
+          <p>读取自动开奖历史</p>
+        </div>
+        <span class="mini">后台数据</span>
+      </div>
+
+      <div class="stat-grid">
+        <div><span>记录</span><b id="total">0</b></div>
+        <div><span>大</span><b id="big">0</b></div>
+        <div><span>小</span><b id="small">0</b></div>
+        <div><span>单</span><b id="odd">0</b></div>
+        <div><span>双</span><b id="even">0</b></div>
+        <div><span>连开</span><b id="streak">--</b></div>
+      </div>
+    </section>
+
+    <section class="card history-card">
+      <div class="title-row">
+        <div>
+          <h2>历史记录</h2>
+          <p>自动开奖记录</p>
+        </div>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="history-empty">暂无记录</div>
+      </div>
+    </section>
+
+    <footer>
+      数据分析仅供娱乐与走势观察，不代表未来开奖结果。
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
