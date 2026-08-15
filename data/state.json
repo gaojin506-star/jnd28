@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-15T12:02:26.984Z",
+  "updatedAt": "2026-08-15T12:03:24.814Z",
   "latestDraw": {
     "issue": "3469869",
     "abc": "7+2+9",
@@ -1893,6 +1893,6 @@
       "createdAt": "2026-08-15T12:01:29.069Z"
     }
   },
-  "countdown": "02:06",
-  "countdownEndsAt": 1786795472003
+  "countdown": "01:08",
+  "countdownEndsAt": 1786795471960
 }
