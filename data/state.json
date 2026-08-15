@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-15T08:39:56.361Z",
+  "updatedAt": "2026-08-15T08:40:54.577Z",
   "latestDraw": {
-    "issue": "3469820",
-    "abc": "5+5+5",
-    "sum": 15,
-    "size": "大",
-    "oe": "单",
-    "combo": "大单",
+    "issue": "3469821",
+    "abc": "1+0+3",
+    "sum": 4,
+    "size": "小",
+    "oe": "双",
+    "combo": "小双",
     "date": "2026-08-15",
-    "time": "16:36:30"
+    "time": "16:40:00"
   },
-  "nextIssue": "3469821",
+  "nextIssue": "3469822",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3469821",
+      "abc": "1+0+3",
+      "sum": 4,
+      "size": "小",
+      "oe": "双",
+      "combo": "小双",
+      "date": "2026-08-15",
+      "time": "16:40:00"
+    },
     {
       "issue": "3469820",
       "abc": "5+5+5",
@@ -1349,16 +1359,6 @@
       "combo": "小单",
       "date": "2026-08-15",
       "time": "10:57:00"
-    },
-    {
-      "issue": "3469722",
-      "abc": "7+4+9",
-      "sum": 20,
-      "size": "大",
-      "oe": "双",
-      "combo": "大双",
-      "date": "2026-08-15",
-      "time": "10:53:30"
     }
   ],
   "v3": {
@@ -1469,11 +1469,11 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3469821",
+    "issue": "3469822",
     "picks": [
       {
         "name": "小双",
-        "confidence": 63
+        "confidence": 65
       },
       {
         "name": "小单",
@@ -1483,7 +1483,7 @@
     "reason": "近8期回补"
   },
   "consensus4": {
-    "issue": "3469821",
+    "issue": "3469822",
     "codes": [
       8,
       18,
@@ -1625,10 +1625,35 @@
         14,
         17
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-15T08:36:41.730Z",
+      "actualSum": 4,
+      "actualCombo": "小双",
+      "actualABC": "1+0+3",
+      "autoResult": "对",
+      "codeResult": "错",
+      "settledAt": "2026-08-15T08:40:53.492Z"
+    },
+    "3469822": {
+      "issue": "3469822",
+      "autoPicks": [
+        "小双",
+        "小单"
+      ],
+      "autoConfidence": [
+        65,
+        58
+      ],
+      "codes": [
+        8,
+        18,
+        19,
+        20
+      ],
       "status": "待",
-      "createdAt": "2026-08-15T08:36:41.730Z"
+      "createdAt": "2026-08-15T08:40:54.576Z"
     }
   },
-  "countdown": "00:07",
-  "countdownEndsAt": 1786783201909
+  "countdown": "02:39",
+  "countdownEndsAt": 1786783412492
 }
