@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-16T13:21:40.836Z",
+  "updatedAt": "2026-08-16T13:25:10.024Z",
   "latestDraw": {
-    "issue": "3470294",
-    "abc": "2+3+6",
-    "sum": 11,
+    "issue": "3470295",
+    "abc": "1+4+3",
+    "sum": 8,
     "size": "小",
-    "oe": "单",
-    "combo": "小单",
+    "oe": "双",
+    "combo": "小双",
     "date": "2026-08-16",
-    "time": "21:21:30"
+    "time": "21:25:00"
   },
-  "nextIssue": "3470295",
+  "nextIssue": "3470296",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3470295",
+      "abc": "1+4+3",
+      "sum": 8,
+      "size": "小",
+      "oe": "双",
+      "combo": "小双",
+      "date": "2026-08-16",
+      "time": "21:25:00"
+    },
     {
       "issue": "3470294",
       "abc": "2+3+6",
@@ -1349,16 +1359,6 @@
       "combo": "大双",
       "date": "2026-08-16",
       "time": "15:09:00"
-    },
-    {
-      "issue": "3470196",
-      "abc": "5+1+3",
-      "sum": 9,
-      "size": "小",
-      "oe": "单",
-      "combo": "小单",
-      "date": "2026-08-16",
-      "time": "15:05:30"
     }
   ],
   "v3": {
@@ -1469,7 +1469,7 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3470295",
+    "issue": "3470296",
     "picks": [
       {
         "name": "大双",
@@ -2814,10 +2814,28 @@
         60,
         58
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-16T13:21:40.836Z",
+      "actualSum": 8,
+      "actualCombo": "小双",
+      "actualABC": "1+4+3",
+      "autoResult": "错",
+      "settledAt": "2026-08-16T13:25:10.024Z"
+    },
+    "3470296": {
+      "issue": "3470296",
+      "autoPicks": [
+        "大双",
+        "小单"
+      ],
+      "autoConfidence": [
+        60,
+        58
+      ],
       "status": "待",
-      "createdAt": "2026-08-16T13:21:40.836Z"
+      "createdAt": "2026-08-16T13:25:10.024Z"
     }
   },
-  "countdown": "03:22",
-  "countdownEndsAt": 1786886702835
+  "countdown": "03:23",
+  "countdownEndsAt": 1786886913024
 }
