@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-16T17:41:38.389Z",
+  "updatedAt": "2026-08-16T17:44:05.414Z",
   "latestDraw": {
-    "issue": "3470368",
-    "abc": "7+2+6",
-    "sum": 15,
+    "issue": "3470369",
+    "abc": "9+4+1",
+    "sum": 14,
     "size": "大",
-    "oe": "单",
-    "combo": "大单",
+    "oe": "双",
+    "combo": "大双",
     "date": "2026-08-17",
-    "time": "01:40:30"
+    "time": "01:44:00"
   },
-  "nextIssue": "3470369",
+  "nextIssue": "3470370",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3470369",
+      "abc": "9+4+1",
+      "sum": 14,
+      "size": "大",
+      "oe": "双",
+      "combo": "大双",
+      "date": "2026-08-17",
+      "time": "01:44:00"
+    },
     {
       "issue": "3470368",
       "abc": "7+2+6",
@@ -1349,16 +1359,6 @@
       "combo": "大单",
       "date": "2026-08-16",
       "time": "20:01:00"
-    },
-    {
-      "issue": "3470270",
-      "abc": "2+4+7",
-      "sum": 13,
-      "size": "小",
-      "oe": "单",
-      "combo": "小单",
-      "date": "2026-08-16",
-      "time": "19:57:30"
     }
   ],
   "v3": {
@@ -1469,15 +1469,15 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3470369",
+    "issue": "3470370",
     "picks": [
       {
         "name": "大单",
-        "confidence": 63
+        "confidence": 61
       },
       {
         "name": "小单",
-        "confidence": 56
+        "confidence": 55
       }
     ],
     "reason": "近8期回补"
@@ -3023,10 +3023,28 @@
         63,
         56
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-16T17:41:38.389Z",
+      "actualSum": 14,
+      "actualCombo": "大双",
+      "actualABC": "9+4+1",
+      "autoResult": "错",
+      "settledAt": "2026-08-16T17:44:05.413Z"
+    },
+    "3470370": {
+      "issue": "3470370",
+      "autoPicks": [
+        "大单",
+        "小单"
+      ],
+      "autoConfidence": [
+        61,
+        55
+      ],
       "status": "待",
-      "createdAt": "2026-08-16T17:41:38.389Z"
+      "createdAt": "2026-08-16T17:44:05.413Z"
     }
   },
-  "countdown": "02:23",
-  "countdownEndsAt": 1786902241388
+  "countdown": "03:26",
+  "countdownEndsAt": 1786902451413
 }
