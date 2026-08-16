@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-16T09:01:17.325Z",
+  "updatedAt": "2026-08-16T09:04:37.628Z",
   "latestDraw": {
-    "issue": "3470229",
-    "abc": "6+0+0",
-    "sum": 6,
+    "issue": "3470230",
+    "abc": "8+5+0",
+    "sum": 13,
     "size": "小",
-    "oe": "双",
-    "combo": "小双",
+    "oe": "单",
+    "combo": "小单",
     "date": "2026-08-16",
-    "time": "17:01:00"
+    "time": "17:04:30"
   },
-  "nextIssue": "3470230",
+  "nextIssue": "3470231",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3470230",
+      "abc": "8+5+0",
+      "sum": 13,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单",
+      "date": "2026-08-16",
+      "time": "17:04:30"
+    },
     {
       "issue": "3470229",
       "abc": "6+0+0",
@@ -1349,26 +1359,6 @@
       "combo": "大单",
       "date": "2026-08-16",
       "time": "11:21:30"
-    },
-    {
-      "issue": "3470131",
-      "abc": "4+4+6",
-      "sum": 14,
-      "size": "大",
-      "oe": "双",
-      "combo": "大双",
-      "date": "2026-08-16",
-      "time": "11:18:00"
-    },
-    {
-      "issue": "3470130",
-      "abc": "2+3+8",
-      "sum": 13,
-      "size": "小",
-      "oe": "单",
-      "combo": "小单",
-      "date": "2026-08-16",
-      "time": "11:14:30"
     }
   ],
   "v3": {
@@ -1479,11 +1469,11 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3470230",
+    "issue": "3470231",
     "picks": [
       {
         "name": "大单",
-        "confidence": 60
+        "confidence": 61
       },
       {
         "name": "小双",
@@ -2664,10 +2654,28 @@
         60,
         57
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-16T09:01:17.325Z",
+      "actualSum": 13,
+      "actualCombo": "小单",
+      "actualABC": "8+5+0",
+      "autoResult": "错",
+      "settledAt": "2026-08-16T09:04:37.627Z"
+    },
+    "3470231": {
+      "issue": "3470231",
+      "autoPicks": [
+        "大单",
+        "小双"
+      ],
+      "autoConfidence": [
+        61,
+        57
+      ],
       "status": "待",
-      "createdAt": "2026-08-16T09:01:17.325Z"
+      "createdAt": "2026-08-16T09:04:37.628Z"
     }
   },
-  "countdown": "00:00",
-  "countdownEndsAt": null
+  "countdown": "03:25",
+  "countdownEndsAt": 1786871282627
 }
