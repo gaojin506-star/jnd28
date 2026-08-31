@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-08-31T00:40:35.469Z",
+  "updatedAt": "2026-08-31T00:44:06.465Z",
   "latestDraw": {
-    "issue": "3476116",
-    "abc": "4+6+9",
-    "sum": 19,
-    "size": "大",
-    "oe": "单",
-    "combo": "大单",
+    "issue": "3476117",
+    "abc": "5+4+3",
+    "sum": 12,
+    "size": "小",
+    "oe": "双",
+    "combo": "小双",
     "date": "2026-08-31",
-    "time": "08:40:30"
+    "time": "08:44:00"
   },
-  "nextIssue": "3476117",
+  "nextIssue": "3476118",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3476117",
+      "abc": "5+4+3",
+      "sum": 12,
+      "size": "小",
+      "oe": "双",
+      "combo": "小双",
+      "date": "2026-08-31",
+      "time": "08:44:00"
+    },
     {
       "issue": "3476116",
       "abc": "4+6+9",
@@ -1349,16 +1359,6 @@
       "combo": "大单",
       "date": "2026-08-31",
       "time": "03:01:00"
-    },
-    {
-      "issue": "3476018",
-      "abc": "1+4+8",
-      "sum": 13,
-      "size": "小",
-      "oe": "单",
-      "combo": "小单",
-      "date": "2026-08-31",
-      "time": "02:57:30"
     }
   ],
   "v3": {
@@ -1469,14 +1469,14 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3476117",
+    "issue": "3476118",
     "picks": [
       {
         "name": "大双",
-        "confidence": 64
+        "confidence": 63
       },
       {
-        "name": "大单",
+        "name": "小双",
         "confidence": 55
       }
     ],
@@ -1550,24 +1550,6 @@
     }
   },
   "comparisons": {
-    "3475991": {
-      "issue": "3475991",
-      "autoPicks": [
-        "小单",
-        "大双"
-      ],
-      "autoConfidence": [
-        61,
-        55
-      ],
-      "status": "已开奖",
-      "createdAt": "2026-08-30T17:20:40.311Z",
-      "actualSum": 11,
-      "actualCombo": "小单",
-      "actualABC": "9+0+2",
-      "autoResult": "对",
-      "settledAt": "2026-08-30T17:23:07.580Z"
-    },
     "3475992": {
       "issue": "3475992",
       "autoPicks": [
@@ -3207,10 +3189,28 @@
         64,
         55
       ],
+      "status": "已开奖",
+      "createdAt": "2026-08-31T00:40:35.469Z",
+      "actualSum": 12,
+      "actualCombo": "小双",
+      "actualABC": "5+4+3",
+      "autoResult": "错",
+      "settledAt": "2026-08-31T00:44:06.464Z"
+    },
+    "3476118": {
+      "issue": "3476118",
+      "autoPicks": [
+        "大双",
+        "小双"
+      ],
+      "autoConfidence": [
+        63,
+        55
+      ],
       "status": "待",
-      "createdAt": "2026-08-31T00:40:35.469Z"
+      "createdAt": "2026-08-31T00:44:06.465Z"
     }
   },
-  "countdown": "03:27",
-  "countdownEndsAt": 1788137042468
+  "countdown": "03:26",
+  "countdownEndsAt": 1788137252464
 }
