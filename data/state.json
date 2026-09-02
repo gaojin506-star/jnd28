@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-09-02T08:48:02.549Z",
+  "updatedAt": "2026-09-02T08:50:40.161Z",
   "latestDraw": {
-    "issue": "3477059",
-    "abc": "7+9+7",
-    "sum": 23,
-    "size": "大",
+    "issue": "3477060",
+    "abc": "2+9+2",
+    "sum": 13,
+    "size": "小",
     "oe": "单",
-    "combo": "大单",
+    "combo": "小单",
     "date": "2026-09-02",
-    "time": "16:47:00"
+    "time": "16:50:30"
   },
-  "nextIssue": "3477060",
+  "nextIssue": "3477061",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3477060",
+      "abc": "2+9+2",
+      "sum": 13,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单",
+      "date": "2026-09-02",
+      "time": "16:50:30"
+    },
     {
       "issue": "3477059",
       "abc": "7+9+7",
@@ -1349,16 +1359,6 @@
       "combo": "小双",
       "date": "2026-09-02",
       "time": "11:07:30"
-    },
-    {
-      "issue": "3476961",
-      "abc": "3+3+9",
-      "sum": 15,
-      "size": "大",
-      "oe": "单",
-      "combo": "大单",
-      "date": "2026-09-02",
-      "time": "11:04:00"
     }
   ],
   "v3": {
@@ -1469,7 +1469,7 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3477060",
+    "issue": "3477061",
     "picks": [
       {
         "name": "小双",
@@ -1550,24 +1550,6 @@
     }
   },
   "comparisons": {
-    "3476878": {
-      "issue": "3476878",
-      "autoPicks": [
-        "小单",
-        "大单"
-      ],
-      "autoConfidence": [
-        60,
-        57
-      ],
-      "status": "已开奖",
-      "createdAt": "2026-09-01T22:11:58.836Z",
-      "actualSum": 9,
-      "actualCombo": "小单",
-      "actualABC": "3+2+4",
-      "autoResult": "对",
-      "settledAt": "2026-09-01T22:13:34.819Z"
-    },
     "3476879": {
       "issue": "3476879",
       "autoPicks": [
@@ -3157,10 +3139,28 @@
         63,
         55
       ],
+      "status": "已开奖",
+      "createdAt": "2026-09-02T08:48:02.549Z",
+      "actualSum": 13,
+      "actualCombo": "小单",
+      "actualABC": "2+9+2",
+      "autoResult": "对",
+      "settledAt": "2026-09-02T08:50:40.161Z"
+    },
+    "3477061": {
+      "issue": "3477061",
+      "autoPicks": [
+        "小双",
+        "小单"
+      ],
+      "autoConfidence": [
+        63,
+        55
+      ],
       "status": "待",
-      "createdAt": "2026-09-02T08:48:02.549Z"
+      "createdAt": "2026-09-02T08:50:40.161Z"
     }
   },
-  "countdown": "02:28",
-  "countdownEndsAt": 1788339030549
+  "countdown": "03:21",
+  "countdownEndsAt": 1788339241161
 }
