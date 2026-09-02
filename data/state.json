@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-09-02T07:58:13.624Z",
+  "updatedAt": "2026-09-02T08:01:33.383Z",
   "latestDraw": {
-    "issue": "3477045",
-    "abc": "0+8+4",
-    "sum": 12,
+    "issue": "3477046",
+    "abc": "3+3+4",
+    "sum": 10,
     "size": "小",
     "oe": "双",
     "combo": "小双",
     "date": "2026-09-02",
-    "time": "15:58:00"
+    "time": "16:01:30"
   },
-  "nextIssue": "3477046",
+  "nextIssue": "3477047",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3477046",
+      "abc": "3+3+4",
+      "sum": 10,
+      "size": "小",
+      "oe": "双",
+      "combo": "小双",
+      "date": "2026-09-02",
+      "time": "16:01:30"
+    },
     {
       "issue": "3477045",
       "abc": "0+8+4",
@@ -1469,18 +1479,18 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3477046",
+    "issue": "3477047",
     "picks": [
       {
         "name": "小双",
-        "confidence": 65
+        "confidence": 64
       },
       {
         "name": "大双",
-        "confidence": 57
+        "confidence": 56
       }
     ],
-    "reason": "近8期回补"
+    "reason": "近8期回补；小双连开2期修正"
   },
   "sources": [
     {
@@ -1550,19 +1560,6 @@
     }
   },
   "comparisons": {
-    "3476868": {
-      "issue": "3476868",
-      "autoPicks": [
-        "小单",
-        "大单"
-      ],
-      "autoConfidence": [
-        59,
-        57
-      ],
-      "status": "待",
-      "createdAt": "2026-09-01T21:35:13.470Z"
-    },
     "3476870": {
       "issue": "3476870",
       "autoPicks": [
@@ -3162,10 +3159,28 @@
         65,
         57
       ],
+      "status": "已开奖",
+      "createdAt": "2026-09-02T07:58:13.624Z",
+      "actualSum": 10,
+      "actualCombo": "小双",
+      "actualABC": "3+3+4",
+      "autoResult": "对",
+      "settledAt": "2026-09-02T08:01:33.382Z"
+    },
+    "3477047": {
+      "issue": "3477047",
+      "autoPicks": [
+        "小双",
+        "大双"
+      ],
+      "autoConfidence": [
+        64,
+        56
+      ],
       "status": "待",
-      "createdAt": "2026-09-02T07:58:13.624Z"
+      "createdAt": "2026-09-02T08:01:33.382Z"
     }
   },
-  "countdown": "03:19",
-  "countdownEndsAt": 1788336092623
+  "countdown": "00:00",
+  "countdownEndsAt": null
 }
