@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-09-03T07:48:21.699Z",
+  "updatedAt": "2026-09-03T07:51:09.614Z",
   "latestDraw": {
-    "issue": "3477444",
-    "abc": "5+0+8",
-    "sum": 13,
+    "issue": "3477445",
+    "abc": "4+0+1",
+    "sum": 5,
     "size": "小",
     "oe": "单",
     "combo": "小单",
     "date": "2026-09-03",
-    "time": "15:47:30"
+    "time": "15:51:00"
   },
-  "nextIssue": "3477445",
+  "nextIssue": "3477446",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3477445",
+      "abc": "4+0+1",
+      "sum": 5,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单",
+      "date": "2026-09-03",
+      "time": "15:51:00"
+    },
     {
       "issue": "3477444",
       "abc": "5+0+8",
@@ -1349,16 +1359,6 @@
       "combo": "大双",
       "date": "2026-09-03",
       "time": "10:08:00"
-    },
-    {
-      "issue": "3477346",
-      "abc": "0+0+0",
-      "sum": 0,
-      "size": "小",
-      "oe": "双",
-      "combo": "小双",
-      "date": "2026-09-03",
-      "time": "10:04:30"
     }
   ],
   "v3": {
@@ -1469,18 +1469,18 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3477445",
+    "issue": "3477446",
     "picks": [
       {
         "name": "小单",
-        "confidence": 65
+        "confidence": 63
       },
       {
         "name": "大单",
-        "confidence": 60
+        "confidence": 58
       }
     ],
-    "reason": "近8期回补"
+    "reason": "近8期回补；小单连开2期修正"
   },
   "sources": [
     {
@@ -1550,24 +1550,6 @@
     }
   },
   "comparisons": {
-    "3477203": {
-      "issue": "3477203",
-      "autoPicks": [
-        "小双",
-        "小单"
-      ],
-      "autoConfidence": [
-        59,
-        57
-      ],
-      "status": "已开奖",
-      "createdAt": "2026-09-02T17:43:45.483Z",
-      "actualSum": 13,
-      "actualCombo": "小单",
-      "actualABC": "7+1+5",
-      "autoResult": "对",
-      "settledAt": "2026-09-02T17:44:08.064Z"
-    },
     "3477204": {
       "issue": "3477204",
       "autoPicks": [
@@ -3122,10 +3104,28 @@
         65,
         60
       ],
+      "status": "已开奖",
+      "createdAt": "2026-09-03T07:48:21.699Z",
+      "actualSum": 5,
+      "actualCombo": "小单",
+      "actualABC": "4+0+1",
+      "autoResult": "对",
+      "settledAt": "2026-09-03T07:51:09.613Z"
+    },
+    "3477446": {
+      "issue": "3477446",
+      "autoPicks": [
+        "小单",
+        "大单"
+      ],
+      "autoConfidence": [
+        63,
+        58
+      ],
       "status": "待",
-      "createdAt": "2026-09-03T07:48:21.699Z"
+      "createdAt": "2026-09-03T07:51:09.613Z"
     }
   },
-  "countdown": "02:41",
-  "countdownEndsAt": 1788421862698
+  "countdown": "03:22",
+  "countdownEndsAt": 1788422071613
 }
