@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-09-12T19:11:42.897Z",
+  "updatedAt": "2026-09-12T19:20:23.523Z",
   "latestDraw": {
-    "issue": "3481248",
-    "abc": "8+9+4",
-    "sum": 21,
+    "issue": "3481250",
+    "abc": "8+6+5",
+    "sum": 19,
     "size": "大",
     "oe": "单",
     "combo": "大单",
     "date": "2026-09-13",
-    "time": "03:11:30"
+    "time": "03:18:30"
   },
-  "nextIssue": "3481249",
+  "nextIssue": "3481251",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,26 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3481250",
+      "abc": "8+6+5",
+      "sum": 19,
+      "size": "大",
+      "oe": "单",
+      "combo": "大单",
+      "date": "2026-09-13",
+      "time": "03:18:30"
+    },
+    {
+      "issue": "3481249",
+      "abc": "3+2+4",
+      "sum": 9,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单",
+      "date": "2026-09-13",
+      "time": "03:15:00"
+    },
     {
       "issue": "3481248",
       "abc": "8+9+4",
@@ -1339,26 +1359,6 @@
       "combo": "小双",
       "date": "2026-09-12",
       "time": "21:35:30"
-    },
-    {
-      "issue": "3481151",
-      "abc": "1+0+7",
-      "sum": 8,
-      "size": "小",
-      "oe": "双",
-      "combo": "小双",
-      "date": "2026-09-12",
-      "time": "21:32:00"
-    },
-    {
-      "issue": "3481150",
-      "abc": "1+9+5",
-      "sum": 15,
-      "size": "大",
-      "oe": "单",
-      "combo": "大单",
-      "date": "2026-09-12",
-      "time": "21:28:30"
     }
   ],
   "v3": {
@@ -1469,15 +1469,15 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3481249",
+    "issue": "3481251",
     "picks": [
       {
         "name": "大双",
-        "confidence": 61
+        "confidence": 60
       },
       {
         "name": "小单",
-        "confidence": 56
+        "confidence": 57
       }
     ],
     "reason": "近8期回补"
@@ -1550,19 +1550,6 @@
     }
   },
   "comparisons": {
-    "3481094": {
-      "issue": "3481094",
-      "autoPicks": [
-        "大双",
-        "小单"
-      ],
-      "autoConfidence": [
-        60,
-        56
-      ],
-      "status": "待",
-      "createdAt": "2026-09-12T09:36:10.943Z"
-    },
     "3481096": {
       "issue": "3481096",
       "autoPicks": [
@@ -3164,8 +3151,21 @@
       ],
       "status": "待",
       "createdAt": "2026-09-12T19:11:42.897Z"
+    },
+    "3481251": {
+      "issue": "3481251",
+      "autoPicks": [
+        "大双",
+        "小单"
+      ],
+      "autoConfidence": [
+        60,
+        57
+      ],
+      "status": "待",
+      "createdAt": "2026-09-12T19:20:23.523Z"
     }
   },
-  "countdown": "03:19",
-  "countdownEndsAt": 1789240501897
+  "countdown": "01:39",
+  "countdownEndsAt": 1789240922522
 }
