@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-10-20T23:27:46.661Z",
+  "updatedAt": "2026-10-20T23:30:36.045Z",
   "latestDraw": {
-    "issue": "3496597",
-    "abc": "6+8+9",
-    "sum": 23,
-    "size": "大",
+    "issue": "3496598",
+    "abc": "2+5+0",
+    "sum": 7,
+    "size": "小",
     "oe": "单",
-    "combo": "大单",
+    "combo": "小单",
     "date": "2026-10-21",
-    "time": "07:27:00"
+    "time": "07:30:30"
   },
-  "nextIssue": "3496598",
+  "nextIssue": "3496599",
   "algorithms": {
     "a1": {
       "name": "算法一｜接口+校正",
@@ -370,6 +370,16 @@
     }
   },
   "drawHistory": [
+    {
+      "issue": "3496598",
+      "abc": "2+5+0",
+      "sum": 7,
+      "size": "小",
+      "oe": "单",
+      "combo": "小单",
+      "date": "2026-10-21",
+      "time": "07:30:30"
+    },
     {
       "issue": "3496597",
       "abc": "6+8+9",
@@ -1469,7 +1479,7 @@
   },
   "dataSource": "keno",
   "autoReference": {
-    "issue": "3496598",
+    "issue": "3496599",
     "picks": [
       {
         "name": "大单",
@@ -1550,19 +1560,6 @@
     }
   },
   "comparisons": {
-    "3493996": {
-      "issue": "3493996",
-      "autoPicks": [
-        "大单",
-        "小单"
-      ],
-      "autoConfidence": [
-        60,
-        56
-      ],
-      "status": "待",
-      "createdAt": "2026-10-14T12:22:07.972Z"
-    },
     "3494081": {
       "issue": "3494081",
       "autoPicks": [
@@ -3132,10 +3129,28 @@
         65,
         58
       ],
+      "status": "已开奖",
+      "createdAt": "2026-10-20T23:27:46.661Z",
+      "actualSum": 7,
+      "actualCombo": "小单",
+      "actualABC": "2+5+0",
+      "autoResult": "错",
+      "settledAt": "2026-10-20T23:30:36.044Z"
+    },
+    "3496599": {
+      "issue": "3496599",
+      "autoPicks": [
+        "大单",
+        "大双"
+      ],
+      "autoConfidence": [
+        65,
+        58
+      ],
       "status": "待",
-      "createdAt": "2026-10-20T23:27:46.661Z"
+      "createdAt": "2026-10-20T23:30:36.045Z"
     }
   },
-  "countdown": "02:46",
-  "countdownEndsAt": 1792539032660
+  "countdown": "00:00",
+  "countdownEndsAt": null
 }
